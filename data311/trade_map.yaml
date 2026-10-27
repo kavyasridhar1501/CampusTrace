@@ -1,0 +1,7 @@
+# 311 category -> facility trade. Proposal status: NOT APPROVED.
+# Filled in from the 2024-2025 aggregate query (see docs/sf-category-proposal.md once it
+# exists). The SF full pull runs only for categories listed here after approved: true.
+approved: false
+approved_on: null
+sf: []
+sj: []
