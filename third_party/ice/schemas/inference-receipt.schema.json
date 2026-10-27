@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Dhammerr6304/ice-v01/schemas/inference-receipt.schema.json",
+  "title": "InferenceReceipt",
+  "description": "Minimum viable signed, hash-chained record of an agent interaction with an Agent Face (ICE V.01).",
+  "type": "object",
+  "required": [
+    "version",
+    "receipt_id",
+    "timestamp",
+    "agent",
+    "target",
+    "action",
+    "result_summary",
+    "previous_hash",
+    "content_hash",
+    "signature"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "0.1",
+      "description": "Schema version of this receipt."
+    },
+    "receipt_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this receipt (UUID v4 recommended)."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp of the observation/action."
+    },
+    "agent": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable identifier of the agent principal (DID, public key fingerprint, or service URI)."
+        },
+        "type": {
+          "type": "string",
+          "description": "Agent class or role (e.g., 'llm-agent', 'crawler', 'orchestrator')."
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": ["url"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Primary URL or endpoint that was accessed."
+        },
+        "surface": {
+          "type": "string",
+          "description": "Optional classification of the Agent Face surface (e.g., 'llms.txt', 'agent.json', 'mcp', 'openapi')."
+        }
+      }
+    },
+    "action": {
+      "type": "string",
+      "description": "High-level description of what the agent did (e.g., 'GET', 'tool_call:search', 'reason')."
+    },
+    "result_summary": {
+      "type": "string",
+      "description": "Concise, human- and machine-readable summary of the outcome or extracted content."
+    },
+    "result_hash": {
+      "type": "string",
+      "description": "Optional SHA-256 of the full raw result payload (if retained separately)."
+    },
+    "previous_hash": {
+      "type": "string",
+      "description": "SHA-256 of the immediately preceding receipt in the chain (or genesis marker for the first)."
+    },
+    "content_hash": {
+      "type": "string",
+      "description": "SHA-256 of the canonicalized receipt body excluding the signature field."
+    },
+    "signature": {
+      "type": "string",
+      "description": "Cryptographic signature over the content_hash (or the full canonical body). Format is implementation-defined in V.01; later versions will standardize."
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional namespace for future or domain-specific fields."
+    }
+  },
+  "additionalProperties": false
+}
