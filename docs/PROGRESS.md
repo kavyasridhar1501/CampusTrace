@@ -2,6 +2,31 @@
 
 Dated log of finished work. Newest first.
 
+## 2026-10-27: Nov 28 phase, part 1 (waiting on CONTACT_EMAIL and Anthropic credentials)
+
+- Kavya's answers recorded: plan amendments in `docs/PLAN.md` (structure-only 311 tests,
+  persona-written report text labelled simulation, simulated weather, personas written
+  before Nov 30), README and `docs/data-sources.md` updated. First four commits pushed;
+  CI run 1 passed.
+- `data311/http.py`: the only way to fetch from a portal. Requires `CONTACT_EMAIL`,
+  checks robots.txt, honours crawl delay, caches each file once with metadata, stops on
+  401/403/429.
+- `data311/sf.py` (category summary, per-category paged pull limited to approved
+  categories), `data311/sj.py` (yearly CSV download, header check),
+  `data311/duplicates.py` (SF DUPLICATE markers, original-case resolution,
+  structure-only candidate pairs), `data311/trades.py` + `trade_map.yaml` (unapproved).
+- Asset graph into Postgres (`agent/campus/store.py`) and upstream / served-rooms
+  queries (`agent/campus/graph.py`); SQL and NetworkX agree for all 303 rooms in all
+  four domains.
+- Fall 2026 schedule generator: 9,615 blocks (8,694 classes, 305 finals, 616 events),
+  deterministic, no double bookings, loads into `schedule_blocks`.
+- Draft failure patterns (33 patterns over 9 asset types including room fixtures, 4 chronic assets) and a
+  624-job repair history skeleton; the Claude note writer is written and tested with a
+  stub but not run (no credentials in this environment).
+- Tests: 99 passing.
+- Blocked: SF category aggregate, the other-cities check and both 311 downloads (no
+  `CONTACT_EMAIL`); repair notes and the review sample (no Anthropic credentials).
+
 ## 2026-10-27: Nov 25 phase (setup, campus model)
 
 Done ahead of the calendar date; the plan's Nov 25 work list, minus the pilot emails.
