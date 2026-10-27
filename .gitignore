@@ -1,0 +1,29 @@
+# secrets
+.env
+*.pem
+!keys/*.pub.pem
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# node
+node_modules/
+web/.next/
+web/out/
+
+# downloaded and cached data (311 files, NWS responses); see docs/data-sources.md
+data/cache/
+data/raw/
+
+# editors and OS
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,52 @@
+# Local stack. `docker compose -f infra/docker-compose.yml up -d db` starts only Postgres.
+# api, worker and web are placeholders until their phases (see docs/PLAN.md, Schedule);
+# they sit behind the "app" profile so a plain `up` does not try to start them.
+name: campustrace
+
+services:
+  db:
+    build: ./db
+    image: campustrace-db:17-3.6-pgvector0.8.7
+    environment:
+      POSTGRES_USER: campus
+      POSTGRES_PASSWORD: campus
+      POSTGRES_DB: campus
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U campus -d campus"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  api:
+    profiles: ["app"]
+    image: python:3.12.12-slim-bookworm
+    command: ["python", "-c", "print('api placeholder: FastAPI service lands with the dashboards (Dec 11)')"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://campus:campus@db:5432/campus
+    depends_on:
+      db:
+        condition: service_healthy
+
+  worker:
+    profiles: ["app"]
+    image: python:3.12.12-slim-bookworm
+    command: ["python", "-c", "print('worker placeholder: LangGraph runner, re-solve loop and follow-up timers')"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://campus:campus@db:5432/campus
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    profiles: ["app"]
+    image: node:22.22.0-bookworm-slim
+    command: ["node", "-e", "console.log('web placeholder: Next.js intake form, staff and technician views')"]
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
