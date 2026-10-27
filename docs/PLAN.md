@@ -3,8 +3,32 @@
 Oct 27, 2026 · @Kavya
 
 > Transcribed from `docs/PLAN.pdf` (the original) so it can be searched and linked. The
-> two diagrams are written out as lists. If this file and the PDF ever disagree, the PDF
-> wins.
+> two diagrams are written out as lists. The amendments below were approved by Kavya after
+> the day-1 data check and take precedence over the PDF; the affected sections are edited
+> in place. Anywhere else, if this file and the PDF disagree, the PDF wins.
+
+## Amendments
+
+**2026-10-27, after checking what the 311 datasets publish** (details in
+`docs/data-sources.md`):
+
+1. Neither San Francisco nor San Jose publishes the reporter's own words. Real 311 data
+   is used for structure only: categories, locations, timing, time to close, and
+   duplicate labels. San Francisco's `status_notes` DUPLICATE markers are real labels; a
+   structure-only duplicate test (category, location, time window) on SF 2024-2025 is
+   reported as **311**, pairing duplicates with their originals where the original case
+   number is given. San Jose has no duplicate field, so its role is category and timing
+   structure only.
+2. Report text for intake, trade assignment and text-based dedup comes from the persona
+   simulator and is reported as **simulation**. The personas and their wording rules are
+   written and frozen before any agent is tuned, so they are written before the intake
+   agent (Nov 30), not on Dec 9. Dec 9 builds the adversarial suites on top of them.
+3. Weather is simulated, not fetched. `api.weather.gov/robots.txt` disallows all paths
+   for all agents, so the National Weather Service API is not called. Weather comes from
+   a seeded config, so every policy and seed sees the same conditions, and the
+   `weather_now` tool reads that simulated weather.
+4. A one-hour check of up to three other cities' 311 feeds for published descriptions
+   (robots and terms first, samples only). Outcome recorded in `docs/data-sources.md`.
 
 ## What it is
 
@@ -69,27 +93,29 @@ email. If anything is blocked, don't work around it.
 
 What they're used for:
 
-- **Duplicate detection:** many reports describe the same problem at the same place.
-  Where a dataset marks duplicates in its status or resolution fields, use that as a
-  label. Otherwise hand-label about 500 candidate pairs (same category, nearby, within
-  72 hours) as duplicate or not.
+- **Duplicate detection (structure only):** San Francisco marks duplicates in
+  `status_notes`, sometimes with the original case number. Use those as labels for a
+  duplicate test on SF 2024-2025 that sees only category, location and time window, not
+  text. San Jose has no duplicate field and is not used for this.
 - **Categorization:** map 311 categories to facility trades (plumbing, electrical, HVAC,
-  structural, custodial, grounds) and test whether the intake agent assigns the right
-  trade from the report text alone.
-- **Urgency:** use category plus time to close as a weak signal for priority, then
-  hand-check a sample.
-- **Realistic wording:** sample real report text to seed the reporter simulator, so test
-  reports read like what people actually write.
+  structural, custodial, grounds). The mapping and the categories' volume, timing and
+  duplicate rates shape the simulated report mix. Testing trade assignment from report
+  text uses persona-written text and is labelled simulation.
+- **Urgency:** use category plus time to close (SF) as a weak signal for priority, then
+  hand-check a sample. San Jose has no close date.
+- **Structure for the simulator:** category mix, arrival timing and duplicate rates from
+  both cities inform the reporter simulator. The wording itself comes from the personas.
 
-On day 1, check which free-text fields each 311 dataset actually publishes. Some cities
-strip or shorten descriptions for privacy, and the plan adapts to what's there.
+Day-1 check (done 2026-10-27): neither dataset publishes reporter free text. See
+Amendments.
 
-### Real: weather
+### Simulated: weather
 
-The National Weather Service API (api.weather.gov) is free, needs no key, and only asks
-for a descriptive User-Agent. The agent uses current and forecast temperature as context:
-a freezing lab during a cold snap is more urgent, and more likely a heating failure, than
-one in May.
+The agent uses current and forecast temperature as context: a freezing lab during a cold
+snap is more urgent, and more likely a heating failure, than one in May. The temperature
+series is generated from a seeded config so every policy sees the same conditions. (The
+original plan used the National Weather Service API; its robots.txt disallows all
+agents, so it is not called. See Amendments.)
 
 ### Simulated: the campus
 
@@ -206,7 +232,7 @@ history. Every node returns a Pydantic object, and every claim cites evidence ID
 ### Tools (read-only unless noted)
 
 resolve_location, room_schedule, asset_upstream, asset_history, similar_reports,
-weather_now, repair_history_search, plus three write tools that only the policy layer can
+weather_now (simulated weather), repair_history_search, plus three write tools that only the policy layer can
 call after approval: create_job, link_reports and request_schedule.
 
 ### Guardrails, all in code
@@ -433,7 +459,8 @@ campus-agent/
   Docker Compose, and vendored ICE V.01 with the cryptography library for Ed25519.
 - **New for this project:** OR-Tools (CP-SAT) for scheduling, SimPy for the simulation,
   NetworkX for graph checks and visualization, Voyage AI or an open-source embedding
-  model for repair retrieval, and the National Weather Service API.
+  model for repair retrieval. (The National Weather Service API was dropped; see
+  Amendments.)
 - Pin exact versions in pyproject.toml and package.json on day 1. LangGraph's latest
   release as of early October 2026 was 1.2.14; pin whatever is current when you start.
 
@@ -470,11 +497,13 @@ the whole system.
   patterns the repair history and simulation will use.
 - **Nov 28 to 29:** asset graph loader and upstream queries, the schedule generator,
   repair history generation and review, the San Francisco and San Jose 311 loaders, and
-  the 311 duplicate and trade labeling sets.
-- **Nov 30:** the ICE wrapper (Ed25519 signing, verify command, anchor workflow), then the
-  intake agent, location resolver, symptom types and photo intake.
+  the SF 311 duplicate set and the category-to-trade mapping.
+- **Nov 30:** the ICE wrapper (Ed25519 signing, verify command, anchor workflow); the
+  reporter personas and wording rules, written and frozen before any agent is tuned; then
+  the intake agent, location resolver, symptom types and photo intake.
 - **Dec 1:** safety overrides and injection defenses with their own tests; the dedup
-  agent, measured on the 311 pairs.
+  agent, measured on the SF 311 duplicate labels (structure only) and on persona-written
+  pairs (text, simulation).
 
 ### Week 2 (Dec 2 to Dec 8): reasoning and scheduling
 
@@ -488,7 +517,7 @@ the whole system.
 
 ### Week 3 (Dec 9 to Dec 15): evaluate and ship
 
-- **Dec 9:** reporter personas and the adversarial suites.
+- **Dec 9:** the adversarial suites, built on the personas written before Nov 30.
 - **Dec 10:** full simulation runs (3 policies, 5 seeds each) and the learning-loop runs.
 - **Dec 11:** staff dashboard, technician view and the "Why this priority?" view.
 - **Dec 12:** room-swap suggestions if there's time, otherwise buffer; fold in pilot data
@@ -506,11 +535,17 @@ pilot).
 
 ### On real 311 data
 
-- **Duplicate detection:** precision, recall and F1 on about 500 labeled pairs from San
-  Francisco and San Jose.
+- **Duplicate detection (structure only):** precision, recall and F1 on San Francisco
+  2024-2025 cases labelled by the city's own DUPLICATE markers, judged on category,
+  location and time window only.
+- **Urgency:** agreement with a hand-checked sample of 150 San Francisco reports, using
+  category and time to close.
+
+### On persona-written text (simulation)
+
 - **Trade assignment:** accuracy against the 311-category-to-trade mapping, on 1,000
-  held-out reports.
-- **Urgency:** agreement with a hand-checked sample of 150 reports.
+  persona-written reports whose categories follow the real 311 mix.
+- **Text-based duplicate detection:** precision, recall and F1 on persona-written pairs.
 
 ### In the simulation
 
@@ -584,7 +619,7 @@ overrides with their reasons, quoted as written.
   OR-Tools solver around class timetables, and learns from technician repair notes; in a
   month-long discrete-event simulation it cut mean time to resolution by X% and duplicate
   crew trips by Y% versus rules-based triage.
-- Measured duplicate detection on real San Francisco and San Jose 311 data (F1 of Z),
+- Measured structure-only duplicate detection on real San Francisco 311 data (F1 of Z),
   reached A% safety escalation recall, and blocked B of 50 prompt-injection attempts in an
   adversarial suite; logged every decision to a signed, hash-chained audit ledger with
   nightly public anchoring.
@@ -623,6 +658,6 @@ overrides with their reasons, quoted as written.
 - ICE V.01, Immutable Chain Evidence (source read Oct 27, 2026)
 - LangGraph release history
 
-OR-Tools, SimPy, NetworkX and the National Weather Service API are described from general
+OR-Tools, SimPy, NetworkX and the National Weather Service API (later dropped) are described from general
 knowledge. Confirm their current versions and usage terms when you pin dependencies on
 Nov 25.

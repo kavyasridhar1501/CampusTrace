@@ -76,7 +76,7 @@ people's surroundings, which the evaluation does not need.
 - **No reporter free text.** The public dataset has no description field. The only
   free text is `status_notes`, written by city staff when they change a case's status
   (e.g. "case_resolved - Officer responded … Unable to Locate."). `service_details` is a
-  fixed label, not the reporter's words. See "Differences from the plan" below.
+  fixed label, not the reporter's words. See "Decisions (2026-10-27)" below.
 - **Duplicate labels exist.** `status_notes` marks duplicates in several forms ("Case is
   a Duplicate", "case_is_a_duplicate - …", "Memo:Duplicate of 1001244235",
   "*DUPLICATE COMPLAINT*"). 69,427 cases opened in 2025 contain "DUPLICATE" there. Some
@@ -94,12 +94,9 @@ people's surroundings, which the evaluation does not need.
 
 Per calendar year, one SoQL query paged by `$offset` in blocks of 50,000 rows, ordered by
 `service_request_id`, at most one request per second, written to
-`data/raw/sf311/<year>.csv`. Scope to agree before the full download:
-
-- years: 2024 and 2025 are enough for ~500 duplicate pairs, 1,000 held-out trade reports
-  and a 150-report urgency sample; the plan allows 2017 onward;
-- categories: either all of them, or only the facility-relevant ones listed above
-  (much smaller).
+`data/raw/sf311/<year>-<category-slug>.csv`. Scope (decided 2026-10-27): 2024 and 2025,
+limited to the categories Kavya approves from the aggregate-by-category proposal. The
+full pull does not start before that approval.
 
 ## San Jose 311 Service Request Data
 
@@ -172,7 +169,7 @@ recorded in its `.meta.json`.
 English-Spanish file shows it holds website and app strings ("Pothole", "What would you
 like to report?", COVID-19 notices), not resident reports. Not used.
 
-## National Weather Service API
+## National Weather Service API (not used)
 
 `https://api.weather.gov/robots.txt` returns:
 
@@ -181,37 +178,43 @@ User-agent: *
 Disallow: /
 ```
 
-The API's documentation asks only for a descriptive User-Agent, and the API exists for
-programs to call. Its robots file nonetheless disallows every path for every agent. I
-have not called the API, and won't until you decide (see below). Nothing in Nov 25 or
-Nov 28 needs it; triage uses weather from Dec 4.
+The API's documentation asks for a descriptive User-Agent and the API is meant for
+programs, but its robots file disallows every path for every agent. Decision
+(2026-10-27): the API is not called. Weather is simulated from a seeded config so every
+policy and seed sees the same conditions, and the plan's `weather_now` tool reads the
+simulated series.
 
-## Differences from the plan, and decisions needed
+## Decisions (2026-10-27)
 
-1. **Neither city publishes the reporter's own words.** The plan expects to test intake
-   trade assignment "from the report text alone" and to "sample real report text to seed
-   the reporter simulator". Neither is possible with real text. Options:
-   a. Trade assignment on 311 becomes "from category labels plus staff notes" for SF,
-      and from `Service Type` for San Jose: a much weaker test of the intake agent.
-   b. Use the 311 structure (category mix, timing, duplicate rates, location spread) as
-      real data, and write report text from that structure with the persona simulator.
-      Every result built on that text is labelled simulation, not 311.
-   c. Look for another public 311 or work-order source that publishes descriptions
-      (e.g. another city's Open311 feed). This needs a new robots/terms check per source.
-2. **Duplicate labels:** SF has real ones in `status_notes`; San Jose has none. Dedup
-   precision and recall can be reported on SF labels directly and on hand-labelled San
-   Jose pairs separately, and both are judged on category, location and time, not text.
-3. **Urgency:** SF has time to close; San Jose has only last-updated time.
-4. **NWS robots.txt disallows everything.** Calling `api.weather.gov` would go against
-   its robots file even though the API is documented for programmatic use. Options: you
-   decide it's acceptable because it is a documented API rather than crawling, or weather
-   stays simulated.
-5. **Socrata app token** needs a Socrata account. Either you create one and put the token
-   in `.env`, or the SF pull runs anonymously at a slower rate.
+1. **Report text.** Neither city publishes the reporter's own words. Real 311 data is
+   used for structure only. Report text for intake, trade assignment and text-based dedup
+   comes from the persona simulator and is labelled simulation. Personas and wording
+   rules are written and frozen before any agent is tuned.
+2. **Duplicates (311).** San Francisco's `status_notes` DUPLICATE markers are the labels.
+   The test sees only category, location and time window, on SF 2024-2025, and pairs a
+   duplicate with its original where the note gives the original case number. San Jose
+   has no duplicate field and is not part of this test.
+3. **Urgency.** SF has time to close; San Jose only has last-updated time, so the urgency
+   signal comes from SF.
+4. **Weather.** Simulated (see above).
+5. **Socrata app token.** Kavya will create the account and add `SOCRATA_APP_TOKEN` to
+   `.env`. Until then SF requests are anonymous, small, and at least 1 second apart.
+6. **SF pull scope.** 2024-2025. An aggregate query by category comes first; the full
+   pull waits for Kavya to approve the category-to-trade list.
+7. **Contact email.** Every request reads `CONTACT_EMAIL` and refuses to run if it is
+   unset. No fallback address.
+8. **Other cities.** Up to three other 311 feeds get a one-hour check for published
+   descriptions (robots and terms first, samples only). Result recorded below.
+
+## Other cities' 311 feeds
+
+Not checked yet: waiting on `CONTACT_EMAIL`.
 
 ## Inspection requests made on 2026-10-27
 
 All with the User-Agent above, with the host's crawl delay between requests.
+`CONTACT_EMAIL` was not set at the time, so these requests carried Kavya's address
+directly. From now on the client reads only `CONTACT_EMAIL` and refuses to run without it.
 
 | Host | Request | Why |
 |---|---|---|

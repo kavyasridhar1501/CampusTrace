@@ -10,10 +10,15 @@ finished work in [docs/PROGRESS.md](docs/PROGRESS.md).
 
 Every result in this README will carry one of three labels:
 
-- **311**: measured on real San Francisco and San Jose 311 service requests. What those
-  datasets contain, and what they don't, is in [docs/data-sources.md](docs/data-sources.md).
+- **311**: measured on real San Francisco 311 service requests, using structure only
+  (category, location, timing, time to close, the city's own duplicate markers). Neither
+  San Francisco nor San Jose publishes the reporter's own words, so no 311 result is a
+  test on report text. San Jose data shapes the category and timing mix only. Details in
+  [docs/data-sources.md](docs/data-sources.md).
 - **simulation**: measured on the simulated campus (buildings, equipment, schedules,
-  crews and repair history are invented) or in the SimPy month-long simulation.
+  crews, weather and repair history are invented), in the SimPy month-long simulation,
+  or on report text written by the persona simulator. Trade assignment and text-based
+  duplicate detection are simulation results.
 - **pilot**: measured on real reports from a pilot with a campus department, if one happens.
 
 No results yet.
