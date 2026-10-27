@@ -1,0 +1,60 @@
+# Rules for generating one simulated quarter of classes, exams and events per room.
+# Generator: agent/campus/schedules.py. Same seed, same schedule.
+seed: 20260924
+timezone: America/Los_Angeles
+
+quarter:
+  name: Fall 2026
+  instruction_start: 2026-09-24
+  instruction_end: 2026-12-04
+  finals_start: 2026-12-05
+  finals_end: 2026-12-11
+
+# No classes on these days. Events can still happen.
+holidays: [2026-11-11, 2026-11-26, 2026-11-27]
+
+# Meeting patterns. A course meets at one start time on every listed day of every
+# instruction week, except holidays.
+patterns:
+  mwf: {days: [mon, wed, fri], minutes: 50, starts: ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]}
+  tuth: {days: [tue, thu], minutes: 80, starts: ["08:00", "09:30", "11:00", "12:30", "14:00", "15:30", "17:00"]}
+  evening: {days: [mon, tue, wed, thu], minutes: 170, starts: ["18:30"], days_per_course: 1}
+  lab: {days: [mon, tue, wed, thu, fri], minutes: 170, starts: ["08:00", "11:00", "14:00"], days_per_course: 1}
+
+# Share of each pattern's slots filled with a course, by room type.
+occupancy:
+  lecture_hall: {mwf: 0.8, tuth: 0.8, evening: 0.25}
+  classroom: {mwf: 0.7, tuth: 0.7, evening: 0.25}
+  seminar: {mwf: 0.3, tuth: 0.4, evening: 0.15}
+
+# Rooms that hold lab sections (lab pattern only), by room type and name prefix.
+lab_rooms:
+  - {type: computer_lab, min_capacity: 40}
+  - {type: wet_lab, name_prefix: "Teaching lab"}
+lab_occupancy: 0.5
+
+# Course labels. Rooms in LEC take courses from any department.
+departments:
+  CSE: [CSE, ECE]
+  CHEM: [CHEM, BICH]
+  LIB: [WRIT, HIST]
+  SSB: [ECON, POLI, SOC, PSYC]
+  LEC: [CSE, CHEM, ECON, POLI, SOC, PSYC, MATH, PHYS, BIOL]
+  REC: [PE]
+
+# Finals: one 3-hour exam per MWF or TuTh course, in its own room, Saturday to Friday.
+finals:
+  minutes: 180
+  starts: ["08:00", "11:30", "15:00", "19:00"]
+
+# Events: evenings and weekends, in these room types, at this many per week on average.
+events:
+  per_week:
+    lecture_hall: 2.0
+    conference: 1.5
+    dining: 2.0
+    gym: 3.0
+    lounge: 1.0
+  weekday_starts: ["19:00", "19:30"]
+  weekend_starts: ["10:00", "13:00", "16:00"]
+  minutes: [60, 90, 120]
