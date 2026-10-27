@@ -1,0 +1,280 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+building: REC
+assets:
+- id: REC-MSB
+  type: panel
+  name: Main switchboard
+  install_year: 2012
+  last_service_date: 2025-12-17
+  criticality: 5
+  located_in: REC-1051
+  attributes: {role: main, volts: 480}
+- id: REC-PNL-M
+  type: panel
+  name: Mechanical power panel
+  install_year: 2012
+  last_service_date: 2026-02-15
+  criticality: 4
+  located_in: REC-1050
+  upstream: [REC-MSB]
+  attributes: {role: mechanical, volts: 480}
+- id: REC-PNL-1
+  type: panel
+  name: Floor 1 lighting and receptacle panel
+  install_year: 2012
+  last_service_date: 2026-04-20
+  criticality: 3
+  located_in: REC-1051
+  upstream: [REC-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: REC-PNL-2
+  type: panel
+  name: Floor 2 lighting and receptacle panel
+  install_year: 2012
+  last_service_date: 2026-07-03
+  criticality: 3
+  located_in: REC-2040
+  upstream: [REC-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: REC-BLR-1
+  type: plant
+  name: Boiler (heating and pool)
+  install_year: 2012
+  last_service_date: 2026-03-22
+  criticality: 5
+  located_in: REC-1050
+  upstream: [REC-PNL-M]
+  attributes: {kind: boiler, mbh: 2500}
+- id: REC-AHU-1
+  type: air_handler
+  name: Air handler 1 (floors 1)
+  install_year: 2012
+  last_service_date: 2026-05-30
+  criticality: 4
+  located_in: REC-1050
+  upstream: [SSB-CH-2, REC-BLR-1, REC-PNL-M]
+  attributes: {cfm: 12000, outside_air_pct: 25}
+- id: REC-AHU-2
+  type: air_handler
+  name: Air handler 2 (floors 1)
+  install_year: 2012
+  last_service_date: 2026-05-06
+  criticality: 4
+  located_in: REC-1050
+  upstream: [SSB-CH-2, REC-BLR-1, REC-PNL-M]
+  attributes: {cfm: 24000, outside_air_pct: 30}
+- id: REC-AHU-3
+  type: air_handler
+  name: Air handler 3 (floors 2)
+  install_year: 2012
+  last_service_date: 2026-03-21
+  criticality: 4
+  located_in: REC-1050
+  upstream: [SSB-CH-2, REC-BLR-1, REC-PNL-M]
+  attributes: {cfm: 16000, outside_air_pct: 20}
+- id: REC-Z1N11
+  type: hvac_zone
+  name: 'Zone 1N1: 1001, 1002...'
+  install_year: 2012
+  last_service_date: 2026-08-20
+  criticality: 2
+  upstream: [REC-AHU-1]
+  serves: [REC-1001, REC-1002, REC-1003, REC-1010, REC-1011, REC-1012, REC-1013, REC-1070]
+- id: REC-Z1N21
+  type: hvac_zone
+  name: 'Zone 1N1: 1000H, 1020...'
+  install_year: 2012
+  last_service_date: 2026-04-25
+  criticality: 2
+  upstream: [REC-AHU-2]
+  serves: [REC-1000H, REC-1020, REC-1021, REC-1022, REC-1030, REC-1040, REC-1050, REC-1051]
+- id: REC-Z1N22
+  type: hvac_zone
+  name: 'Zone 1N2: 1060, 1080'
+  install_year: 2012
+  last_service_date: 2026-07-24
+  criticality: 2
+  upstream: [REC-AHU-2]
+  serves: [REC-1060, REC-1080]
+- id: REC-Z2N1
+  type: hvac_zone
+  name: 'Zone 2N1: 2000H, 2001...'
+  install_year: 2012
+  last_service_date: 2026-05-04
+  criticality: 2
+  upstream: [REC-AHU-3]
+  serves: [REC-2000H, REC-2001, REC-2002, REC-2003, REC-2010, REC-2011, REC-2012, REC-2013]
+- id: REC-Z2N2
+  type: hvac_zone
+  name: 'Zone 2N2: 2020, 2021...'
+  install_year: 2012
+  last_service_date: 2026-06-12
+  criticality: 2
+  upstream: [REC-AHU-3]
+  serves: [REC-2020, REC-2021, REC-2022, REC-2023, REC-2024, REC-2030, REC-2031, REC-2040]
+- id: REC-Z2N3
+  type: hvac_zone
+  name: 'Zone 2N3: 2050'
+  install_year: 2012
+  last_service_date: 2026-01-17
+  criticality: 2
+  upstream: [REC-AHU-3]
+  serves: [REC-2050]
+- id: REC-PNL-1-C01
+  type: circuit
+  name: Panel 1 circuit 1
+  install_year: 2012
+  last_service_date: 2026-09-23
+  criticality: 2
+  upstream: [REC-PNL-1]
+  serves: [REC-1000H, REC-1001, REC-1002]
+  attributes: {amps: 20}
+- id: REC-PNL-1-C02
+  type: circuit
+  name: Panel 1 circuit 2
+  install_year: 2012
+  last_service_date: 2026-08-01
+  criticality: 2
+  upstream: [REC-PNL-1]
+  serves: [REC-1003, REC-1010, REC-1011]
+  attributes: {amps: 20}
+- id: REC-PNL-1-C03
+  type: circuit
+  name: Panel 1 circuit 3
+  install_year: 2012
+  last_service_date: 2025-12-25
+  criticality: 2
+  upstream: [REC-PNL-1]
+  serves: [REC-1012, REC-1013, REC-1020]
+  attributes: {amps: 20}
+- id: REC-PNL-1-C04
+  type: circuit
+  name: Panel 1 circuit 4
+  install_year: 2012
+  last_service_date: 2026-08-17
+  criticality: 2
+  upstream: [REC-PNL-1]
+  serves: [REC-1021, REC-1022, REC-1030]
+  attributes: {amps: 20}
+- id: REC-PNL-1-C05
+  type: circuit
+  name: Panel 1 circuit 5
+  install_year: 2012
+  last_service_date: 2025-12-16
+  criticality: 2
+  upstream: [REC-PNL-1]
+  serves: [REC-1040, REC-1050, REC-1051]
+  attributes: {amps: 20}
+- id: REC-PNL-1-C06
+  type: circuit
+  name: Panel 1 circuit 6
+  install_year: 2012
+  last_service_date: 2025-11-26
+  criticality: 2
+  upstream: [REC-PNL-1]
+  serves: [REC-1060, REC-1070, REC-1080]
+  attributes: {amps: 20}
+- id: REC-PNL-2-C01
+  type: circuit
+  name: Panel 2 circuit 1
+  install_year: 2012
+  last_service_date: 2026-04-21
+  criticality: 2
+  upstream: [REC-PNL-2]
+  serves: [REC-2000H, REC-2001, REC-2002]
+  attributes: {amps: 20}
+- id: REC-PNL-2-C02
+  type: circuit
+  name: Panel 2 circuit 2
+  install_year: 2012
+  last_service_date: 2026-07-16
+  criticality: 2
+  upstream: [REC-PNL-2]
+  serves: [REC-2003, REC-2010, REC-2011]
+  attributes: {amps: 20}
+- id: REC-PNL-2-C03
+  type: circuit
+  name: Panel 2 circuit 3
+  install_year: 2012
+  last_service_date: 2026-07-30
+  criticality: 2
+  upstream: [REC-PNL-2]
+  serves: [REC-2012, REC-2013, REC-2020]
+  attributes: {amps: 20}
+- id: REC-PNL-2-C04
+  type: circuit
+  name: Panel 2 circuit 4
+  install_year: 2012
+  last_service_date: 2026-02-20
+  criticality: 2
+  upstream: [REC-PNL-2]
+  serves: [REC-2021, REC-2022, REC-2023]
+  attributes: {amps: 20}
+- id: REC-PNL-2-C05
+  type: circuit
+  name: Panel 2 circuit 5
+  install_year: 2012
+  last_service_date: 2025-11-06
+  criticality: 2
+  upstream: [REC-PNL-2]
+  serves: [REC-2024, REC-2030, REC-2031]
+  attributes: {amps: 20}
+- id: REC-PNL-2-C06
+  type: circuit
+  name: Panel 2 circuit 6
+  install_year: 2012
+  last_service_date: 2026-02-28
+  criticality: 2
+  upstream: [REC-PNL-2]
+  serves: [REC-2040, REC-2050]
+  attributes: {amps: 20}
+- id: REC-ELB-1
+  type: elevator_bank
+  name: Elevator bank
+  install_year: 2012
+  last_service_date: 2026-05-07
+  criticality: 4
+  upstream: [REC-PNL-M]
+  serves: [REC-F1, REC-F2]
+- id: REC-EL-1
+  type: elevator
+  name: Elevator 1
+  install_year: 2012
+  last_service_date: 2025-11-29
+  criticality: 4
+  part_of: REC-ELB-1
+  attributes: {kind: passenger, capacity_lbs: 3500}
+- id: REC-WH-1
+  type: water_heater
+  name: Water heater 1
+  install_year: 2022
+  last_service_date: 2025-11-08
+  criticality: 3
+  located_in: REC-1050
+  upstream: [REC-PNL-M]
+  attributes: {fuel: gas, gallons: 100}
+- id: REC-WH-2
+  type: water_heater
+  name: Water heater 2
+  install_year: 2021
+  last_service_date: 2026-02-17
+  criticality: 3
+  located_in: REC-1050
+  upstream: [REC-PNL-M]
+  attributes: {fuel: gas, gallons: 100}
+- id: REC-PR-1
+  type: plumbing_riser
+  name: Plumbing riser 1 (east stack)
+  install_year: 2012
+  last_service_date: 2026-06-15
+  criticality: 3
+  upstream: [REC-WH-1]
+  serves: [REC-1002, REC-1003, REC-1011, REC-1012, REC-1013, REC-1020]
+- id: REC-PR-2
+  type: plumbing_riser
+  name: Plumbing riser 2 (west stack)
+  install_year: 2012
+  last_service_date: 2026-07-12
+  criticality: 3
+  upstream: [REC-WH-2]
+  serves: [REC-1021, REC-1022, REC-1060, REC-2030, REC-2031]

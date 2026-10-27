@@ -1,0 +1,306 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+building: LIB
+assets:
+- id: LIB-MSB
+  type: panel
+  name: Main switchboard
+  install_year: 1965
+  last_service_date: 2026-08-08
+  criticality: 5
+  located_in: LIB-1061
+  attributes: {role: main, volts: 480}
+- id: LIB-PNL-M
+  type: panel
+  name: Mechanical power panel
+  install_year: 1965
+  last_service_date: 2025-12-24
+  criticality: 4
+  located_in: LIB-1060
+  upstream: [LIB-MSB]
+  attributes: {role: mechanical, volts: 480}
+- id: LIB-PNL-1
+  type: panel
+  name: Floor 1 lighting and receptacle panel
+  install_year: 1965
+  last_service_date: 2025-11-20
+  criticality: 3
+  located_in: LIB-1061
+  upstream: [LIB-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: LIB-PNL-2
+  type: panel
+  name: Floor 2 lighting and receptacle panel
+  install_year: 1965
+  last_service_date: 2025-11-17
+  criticality: 3
+  located_in: LIB-2060
+  upstream: [LIB-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: LIB-PNL-3
+  type: panel
+  name: Floor 3 lighting and receptacle panel
+  install_year: 1965
+  last_service_date: 2026-09-21
+  criticality: 3
+  located_in: LIB-3060
+  upstream: [LIB-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: LIB-AHU-1
+  type: air_handler
+  name: Air handler 1 (floors 1)
+  install_year: 1999
+  last_service_date: 2024-08-31
+  criticality: 4
+  located_in: LIB-1060
+  upstream: [SSB-CH-2, SSB-BLR-2, LIB-PNL-M]
+  attributes: {cfm: 20000, outside_air_pct: 30}
+- id: LIB-AHU-2
+  type: air_handler
+  name: Air handler 2 (floors 2, 3)
+  install_year: 1965
+  last_service_date: 2024-06-10
+  criticality: 4
+  located_in: LIB-1060
+  upstream: [SSB-CH-2, SSB-BLR-2, LIB-PNL-M]
+  attributes: {cfm: 20000, outside_air_pct: 20}
+- id: LIB-Z1N1
+  type: hvac_zone
+  name: 'Zone 1N1: 1000H, 1010...'
+  install_year: 1999
+  last_service_date: 2026-02-08
+  criticality: 2
+  upstream: [LIB-AHU-1]
+  serves: [LIB-1000H, LIB-1010, LIB-1020, LIB-1021, LIB-1022, LIB-1023, LIB-1024, LIB-1025]
+- id: LIB-Z1N2
+  type: hvac_zone
+  name: 'Zone 1N2: 1030, 1040...'
+  install_year: 1999
+  last_service_date: 2026-06-27
+  criticality: 2
+  upstream: [LIB-AHU-1]
+  serves: [LIB-1030, LIB-1040, LIB-1041, LIB-1050, LIB-1060, LIB-1061, LIB-1070, LIB-1080]
+- id: LIB-Z1N3
+  type: hvac_zone
+  name: 'Zone 1N3: 1081'
+  install_year: 1999
+  last_service_date: 2026-05-15
+  criticality: 2
+  upstream: [LIB-AHU-1]
+  serves: [LIB-1081]
+- id: LIB-Z2N1
+  type: hvac_zone
+  name: 'Zone 2N1: 2000H, 2010...'
+  install_year: 1965
+  last_service_date: 2026-01-21
+  criticality: 2
+  upstream: [LIB-AHU-2]
+  serves: [LIB-2000H, LIB-2010, LIB-2011, LIB-2020, LIB-2021, LIB-2022, LIB-2023, LIB-2024]
+- id: LIB-Z2N2
+  type: hvac_zone
+  name: 'Zone 2N2: 2025, 2026...'
+  install_year: 1965
+  last_service_date: 2026-02-13
+  criticality: 2
+  upstream: [LIB-AHU-2]
+  serves: [LIB-2025, LIB-2026, LIB-2027, LIB-2040, LIB-2041, LIB-2050, LIB-2060]
+- id: LIB-Z3N1
+  type: hvac_zone
+  name: 'Zone 3N1: 3000H, 3010...'
+  install_year: 1965
+  last_service_date: 2026-07-30
+  criticality: 2
+  upstream: [LIB-AHU-2]
+  serves: [LIB-3000H, LIB-3010, LIB-3011, LIB-3020, LIB-3021, LIB-3022, LIB-3023, LIB-3024]
+- id: LIB-Z3N2
+  type: hvac_zone
+  name: 'Zone 3N2: 3025, 3030...'
+  install_year: 1965
+  last_service_date: 2026-09-02
+  criticality: 2
+  upstream: [LIB-AHU-2]
+  serves: [LIB-3025, LIB-3030, LIB-3040, LIB-3041, LIB-3060]
+- id: LIB-PNL-1-C01
+  type: circuit
+  name: Panel 1 circuit 1
+  install_year: 1965
+  last_service_date: 2026-04-15
+  criticality: 2
+  upstream: [LIB-PNL-1]
+  serves: [LIB-1000H, LIB-1010, LIB-1020]
+  attributes: {amps: 20}
+- id: LIB-PNL-1-C02
+  type: circuit
+  name: Panel 1 circuit 2
+  install_year: 1965
+  last_service_date: 2026-06-01
+  criticality: 2
+  upstream: [LIB-PNL-1]
+  serves: [LIB-1021, LIB-1022, LIB-1023]
+  attributes: {amps: 20}
+- id: LIB-PNL-1-C03
+  type: circuit
+  name: Panel 1 circuit 3
+  install_year: 1965
+  last_service_date: 2026-08-15
+  criticality: 2
+  upstream: [LIB-PNL-1]
+  serves: [LIB-1024, LIB-1025, LIB-1030]
+  attributes: {amps: 20}
+- id: LIB-PNL-1-C04
+  type: circuit
+  name: Panel 1 circuit 4
+  install_year: 1965
+  last_service_date: 2026-05-19
+  criticality: 2
+  upstream: [LIB-PNL-1]
+  serves: [LIB-1040, LIB-1041, LIB-1050]
+  attributes: {amps: 20}
+- id: LIB-PNL-1-C05
+  type: circuit
+  name: Panel 1 circuit 5
+  install_year: 1965
+  last_service_date: 2026-06-04
+  criticality: 2
+  upstream: [LIB-PNL-1]
+  serves: [LIB-1060, LIB-1061, LIB-1070]
+  attributes: {amps: 20}
+- id: LIB-PNL-1-C06
+  type: circuit
+  name: Panel 1 circuit 6
+  install_year: 1965
+  last_service_date: 2026-06-29
+  criticality: 2
+  upstream: [LIB-PNL-1]
+  serves: [LIB-1080, LIB-1081]
+  attributes: {amps: 20}
+- id: LIB-PNL-2-C01
+  type: circuit
+  name: Panel 2 circuit 1
+  install_year: 1965
+  last_service_date: 2026-07-10
+  criticality: 2
+  upstream: [LIB-PNL-2]
+  serves: [LIB-2000H, LIB-2010, LIB-2011]
+  attributes: {amps: 20}
+- id: LIB-PNL-2-C02
+  type: circuit
+  name: Panel 2 circuit 2
+  install_year: 1965
+  last_service_date: 2026-06-01
+  criticality: 2
+  upstream: [LIB-PNL-2]
+  serves: [LIB-2020, LIB-2021, LIB-2022]
+  attributes: {amps: 20}
+- id: LIB-PNL-2-C03
+  type: circuit
+  name: Panel 2 circuit 3
+  install_year: 1965
+  last_service_date: 2026-06-24
+  criticality: 2
+  upstream: [LIB-PNL-2]
+  serves: [LIB-2023, LIB-2024, LIB-2025]
+  attributes: {amps: 20}
+- id: LIB-PNL-2-C04
+  type: circuit
+  name: Panel 2 circuit 4
+  install_year: 1965
+  last_service_date: 2026-04-13
+  criticality: 2
+  upstream: [LIB-PNL-2]
+  serves: [LIB-2026, LIB-2027, LIB-2040]
+  attributes: {amps: 20}
+- id: LIB-PNL-2-C05
+  type: circuit
+  name: Panel 2 circuit 5
+  install_year: 1965
+  last_service_date: 2026-08-22
+  criticality: 2
+  upstream: [LIB-PNL-2]
+  serves: [LIB-2041, LIB-2050, LIB-2060]
+  attributes: {amps: 20}
+- id: LIB-PNL-3-C01
+  type: circuit
+  name: Panel 3 circuit 1
+  install_year: 1965
+  last_service_date: 2026-09-22
+  criticality: 2
+  upstream: [LIB-PNL-3]
+  serves: [LIB-3000H, LIB-3010, LIB-3011]
+  attributes: {amps: 20}
+- id: LIB-PNL-3-C02
+  type: circuit
+  name: Panel 3 circuit 2
+  install_year: 1965
+  last_service_date: 2025-11-04
+  criticality: 2
+  upstream: [LIB-PNL-3]
+  serves: [LIB-3020, LIB-3021, LIB-3022]
+  attributes: {amps: 20}
+- id: LIB-PNL-3-C03
+  type: circuit
+  name: Panel 3 circuit 3
+  install_year: 1965
+  last_service_date: 2026-09-08
+  criticality: 2
+  upstream: [LIB-PNL-3]
+  serves: [LIB-3023, LIB-3024, LIB-3025]
+  attributes: {amps: 20}
+- id: LIB-PNL-3-C04
+  type: circuit
+  name: Panel 3 circuit 4
+  install_year: 1965
+  last_service_date: 2026-01-02
+  criticality: 2
+  upstream: [LIB-PNL-3]
+  serves: [LIB-3030, LIB-3040, LIB-3041]
+  attributes: {amps: 20}
+- id: LIB-PNL-3-C05
+  type: circuit
+  name: Panel 3 circuit 5
+  install_year: 1965
+  last_service_date: 2026-05-11
+  criticality: 2
+  upstream: [LIB-PNL-3]
+  serves: [LIB-3060]
+  attributes: {amps: 20}
+- id: LIB-ELB-1
+  type: elevator_bank
+  name: Elevator bank
+  install_year: 1995
+  last_service_date: 2026-01-03
+  criticality: 4
+  upstream: [LIB-PNL-M]
+  serves: [LIB-F1, LIB-F2, LIB-F3]
+- id: LIB-EL-1
+  type: elevator
+  name: Elevator 1
+  install_year: 1995
+  last_service_date: 2024-06-07
+  criticality: 4
+  part_of: LIB-ELB-1
+  attributes: {kind: passenger, capacity_lbs: 3500}
+- id: LIB-WH-1
+  type: water_heater
+  name: Water heater 1
+  install_year: 2016
+  last_service_date: 2025-11-27
+  criticality: 3
+  located_in: LIB-1060
+  upstream: [LIB-PNL-M]
+  attributes: {fuel: electric, gallons: 120}
+- id: LIB-PR-1
+  type: plumbing_riser
+  name: Plumbing riser 1 (east stack)
+  install_year: 1965
+  last_service_date: 2026-05-21
+  criticality: 3
+  upstream: [LIB-WH-1]
+  serves: [LIB-1040, LIB-1041, LIB-1070, LIB-1081]
+- id: LIB-PR-2
+  type: plumbing_riser
+  name: Plumbing riser 2 (west stack)
+  install_year: 1965
+  last_service_date: 2026-08-20
+  criticality: 3
+  upstream: [LIB-WH-1]
+  serves: [LIB-2040, LIB-2041, LIB-3040, LIB-3041]

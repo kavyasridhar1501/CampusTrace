@@ -1,0 +1,45 @@
+# Simulated maintenance crew: 8 technicians. Names are invented.
+# Trades follow the plan's six: plumbing, electrical, hvac, structural, custodial, grounds.
+# Elevator entrapments are a safety override (P1, human page); the elevator vendor is
+# outside this crew, so no technician carries an elevator trade.
+crews:
+  - id: tech-01
+    name: Ana Ruiz
+    trades: [hvac]
+    shift: {days: [mon, tue, wed, thu, fri], start: "06:00", end: "14:30"}
+    home_building: CSE
+  - id: tech-02
+    name: Dev Patel
+    trades: [hvac, electrical]
+    shift: {days: [tue, wed, thu, fri, sat], start: "10:00", end: "18:30"}
+    home_building: SSB
+  - id: tech-03
+    name: Sam Okafor
+    trades: [electrical]
+    shift: {days: [mon, tue, wed, thu, fri], start: "07:00", end: "15:30"}
+    home_building: CHEM
+  - id: tech-04
+    name: Lena Park
+    trades: [electrical]
+    shift: {days: [sun, mon, tue, wed, thu], start: "14:00", end: "22:30"}
+    home_building: LEC
+  - id: tech-05
+    name: Joe Martinez
+    trades: [plumbing]
+    shift: {days: [mon, tue, wed, thu, fri], start: "07:00", end: "15:30"}
+    home_building: CHEM
+  - id: tech-06
+    name: Priya Nair
+    trades: [plumbing, custodial]
+    shift: {days: [wed, thu, fri, sat, sun], start: "12:00", end: "20:30"}
+    home_building: REC
+  - id: tech-07
+    name: Tom Becker
+    trades: [structural, custodial]
+    shift: {days: [mon, tue, wed, thu, fri], start: "07:00", end: "15:30"}
+    home_building: LIB
+  - id: tech-08
+    name: Grace Liu
+    trades: [grounds, custodial]
+    shift: {days: [mon, tue, wed, thu, fri], start: "06:00", end: "14:30"}
+    home_building: REC

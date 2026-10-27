@@ -1,0 +1,429 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+building: SSB
+assets:
+- id: SSB-MSB
+  type: panel
+  name: Main switchboard
+  install_year: 1988
+  last_service_date: 2026-04-16
+  criticality: 5
+  located_in: SSB-B002
+  attributes: {role: main, volts: 480}
+- id: SSB-PNL-M
+  type: panel
+  name: Mechanical power panel
+  install_year: 1988
+  last_service_date: 2025-11-11
+  criticality: 4
+  located_in: SSB-B001
+  upstream: [SSB-MSB]
+  attributes: {role: mechanical, volts: 480}
+- id: SSB-PNL-B
+  type: panel
+  name: Floor B lighting and receptacle panel
+  install_year: 1988
+  last_service_date: 2026-04-14
+  criticality: 3
+  located_in: SSB-B002
+  upstream: [SSB-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: SSB-PNL-1
+  type: panel
+  name: Floor 1 lighting and receptacle panel
+  install_year: 1988
+  last_service_date: 2026-06-25
+  criticality: 3
+  located_in: SSB-1050
+  upstream: [SSB-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: SSB-PNL-2
+  type: panel
+  name: Floor 2 lighting and receptacle panel
+  install_year: 1988
+  last_service_date: 2025-11-09
+  criticality: 3
+  located_in: SSB-2050
+  upstream: [SSB-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: SSB-PNL-3
+  type: panel
+  name: Floor 3 lighting and receptacle panel
+  install_year: 1988
+  last_service_date: 2026-01-02
+  criticality: 3
+  located_in: SSB-3050
+  upstream: [SSB-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: SSB-PNL-4
+  type: panel
+  name: Floor 4 lighting and receptacle panel
+  install_year: 1988
+  last_service_date: 2026-08-07
+  criticality: 3
+  located_in: SSB-4050
+  upstream: [SSB-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: SSB-CH-1
+  type: plant
+  name: 'Chiller 1 (loop A: CSE, LEC)'
+  install_year: 2004
+  last_service_date: 2026-01-19
+  criticality: 5
+  located_in: SSB-B001
+  upstream: [SSB-PNL-M]
+  attributes: {kind: chiller, tons: 500}
+- id: SSB-CH-2
+  type: plant
+  name: 'Chiller 2 (loop B: SSB, LIB, REC)'
+  install_year: 2019
+  last_service_date: 2026-09-11
+  criticality: 5
+  located_in: SSB-B001
+  upstream: [SSB-PNL-M]
+  attributes: {kind: chiller, tons: 500}
+- id: SSB-BLR-1
+  type: plant
+  name: 'Boiler 1 (loop A: CSE, LEC)'
+  install_year: 1988
+  last_service_date: 2024-08-06
+  criticality: 5
+  located_in: SSB-B001
+  upstream: [SSB-PNL-M]
+  attributes: {kind: boiler, mbh: 4000}
+- id: SSB-BLR-2
+  type: plant
+  name: 'Boiler 2 (loop B: SSB, LIB)'
+  install_year: 2010
+  last_service_date: 2026-07-03
+  criticality: 5
+  located_in: SSB-B001
+  upstream: [SSB-PNL-M]
+  attributes: {kind: boiler, mbh: 4000}
+- id: SSB-AHU-1
+  type: air_handler
+  name: Air handler 1 (floors B, 1, 2)
+  install_year: 1988
+  last_service_date: 2026-05-20
+  criticality: 4
+  located_in: SSB-B001
+  upstream: [SSB-CH-2, SSB-BLR-2, SSB-PNL-M]
+  attributes: {cfm: 20000, outside_air_pct: 20}
+- id: SSB-AHU-2
+  type: air_handler
+  name: Air handler 2 (floors 3, 4)
+  install_year: 2011
+  last_service_date: 2025-11-06
+  criticality: 4
+  located_in: SSB-B001
+  upstream: [SSB-CH-2, SSB-BLR-2, SSB-PNL-M]
+  attributes: {cfm: 12000, outside_air_pct: 20}
+- id: SSB-ZBN1
+  type: hvac_zone
+  name: 'Zone BN1: B000H, B001...'
+  install_year: 1988
+  last_service_date: 2026-09-13
+  criticality: 2
+  upstream: [SSB-AHU-1]
+  serves: [SSB-B000H, SSB-B001, SSB-B002, SSB-B003, SSB-B004, SSB-B005]
+- id: SSB-Z1N1
+  type: hvac_zone
+  name: 'Zone 1N1: 1000H, 1001...'
+  install_year: 1988
+  last_service_date: 2026-04-07
+  criticality: 2
+  upstream: [SSB-AHU-1]
+  serves: [SSB-1000H, SSB-1001, SSB-1002, SSB-1003, SSB-1004, SSB-1005, SSB-1006, SSB-1010]
+- id: SSB-Z1N2
+  type: hvac_zone
+  name: 'Zone 1N2: 1011, 1020...'
+  install_year: 1988
+  last_service_date: 2026-07-02
+  criticality: 2
+  upstream: [SSB-AHU-1]
+  serves: [SSB-1011, SSB-1020, SSB-1030, SSB-1040, SSB-1050]
+- id: SSB-Z2N1
+  type: hvac_zone
+  name: 'Zone 2N1: 2000H, 2001...'
+  install_year: 1988
+  last_service_date: 2026-05-11
+  criticality: 2
+  upstream: [SSB-AHU-1]
+  serves: [SSB-2000H, SSB-2001, SSB-2002, SSB-2003, SSB-2004, SSB-2005, SSB-2006, SSB-2007]
+- id: SSB-Z2N2
+  type: hvac_zone
+  name: 'Zone 2N2: 2008, 2011...'
+  install_year: 1988
+  last_service_date: 2026-04-25
+  criticality: 2
+  upstream: [SSB-AHU-1]
+  serves: [SSB-2008, SSB-2011, SSB-2020, SSB-2021, SSB-2030, SSB-2050, SSB-2060]
+- id: SSB-Z3N1
+  type: hvac_zone
+  name: 'Zone 3N1: 3000H, 3001...'
+  install_year: 2011
+  last_service_date: 2026-09-21
+  criticality: 2
+  upstream: [SSB-AHU-2]
+  serves: [SSB-3000H, SSB-3001, SSB-3002, SSB-3003, SSB-3004, SSB-3005, SSB-3006, SSB-3007]
+- id: SSB-Z3N2
+  type: hvac_zone
+  name: 'Zone 3N2: 3008, 3011...'
+  install_year: 2011
+  last_service_date: 2025-12-01
+  criticality: 2
+  upstream: [SSB-AHU-2]
+  serves: [SSB-3008, SSB-3011, SSB-3020, SSB-3021, SSB-3030, SSB-3050]
+- id: SSB-Z4N1
+  type: hvac_zone
+  name: 'Zone 4N1: 4000H, 4001...'
+  install_year: 2011
+  last_service_date: 2026-08-30
+  criticality: 2
+  upstream: [SSB-AHU-2]
+  serves: [SSB-4000H, SSB-4001, SSB-4002, SSB-4003, SSB-4004, SSB-4005, SSB-4006, SSB-4010]
+- id: SSB-Z4N2
+  type: hvac_zone
+  name: 'Zone 4N2: 4020, 4021...'
+  install_year: 2011
+  last_service_date: 2026-09-07
+  criticality: 2
+  upstream: [SSB-AHU-2]
+  serves: [SSB-4020, SSB-4021, SSB-4030, SSB-4050]
+- id: SSB-PNL-B-C01
+  type: circuit
+  name: Panel B circuit 1
+  install_year: 1988
+  last_service_date: 2025-12-16
+  criticality: 2
+  upstream: [SSB-PNL-B]
+  serves: [SSB-B000H, SSB-B001, SSB-B002]
+  attributes: {amps: 20}
+- id: SSB-PNL-B-C02
+  type: circuit
+  name: Panel B circuit 2
+  install_year: 1988
+  last_service_date: 2026-05-05
+  criticality: 2
+  upstream: [SSB-PNL-B]
+  serves: [SSB-B003, SSB-B004, SSB-B005]
+  attributes: {amps: 20}
+- id: SSB-PNL-1-C01
+  type: circuit
+  name: Panel 1 circuit 1
+  install_year: 1988
+  last_service_date: 2026-09-06
+  criticality: 2
+  upstream: [SSB-PNL-1]
+  serves: [SSB-1000H, SSB-1001, SSB-1002]
+  attributes: {amps: 20}
+- id: SSB-PNL-1-C02
+  type: circuit
+  name: Panel 1 circuit 2
+  install_year: 1988
+  last_service_date: 2026-04-22
+  criticality: 2
+  upstream: [SSB-PNL-1]
+  serves: [SSB-1003, SSB-1004, SSB-1005]
+  attributes: {amps: 20}
+- id: SSB-PNL-1-C03
+  type: circuit
+  name: Panel 1 circuit 3
+  install_year: 1988
+  last_service_date: 2026-09-24
+  criticality: 2
+  upstream: [SSB-PNL-1]
+  serves: [SSB-1006, SSB-1010, SSB-1011]
+  attributes: {amps: 20}
+- id: SSB-PNL-1-C04
+  type: circuit
+  name: Panel 1 circuit 4
+  install_year: 1988
+  last_service_date: 2026-02-05
+  criticality: 2
+  upstream: [SSB-PNL-1]
+  serves: [SSB-1020, SSB-1030, SSB-1040]
+  attributes: {amps: 20}
+- id: SSB-PNL-1-C05
+  type: circuit
+  name: Panel 1 circuit 5
+  install_year: 1988
+  last_service_date: 2026-03-16
+  criticality: 2
+  upstream: [SSB-PNL-1]
+  serves: [SSB-1050]
+  attributes: {amps: 20}
+- id: SSB-PNL-2-C01
+  type: circuit
+  name: Panel 2 circuit 1
+  install_year: 1988
+  last_service_date: 2026-07-13
+  criticality: 2
+  upstream: [SSB-PNL-2]
+  serves: [SSB-2000H, SSB-2001, SSB-2002]
+  attributes: {amps: 20}
+- id: SSB-PNL-2-C02
+  type: circuit
+  name: Panel 2 circuit 2
+  install_year: 1988
+  last_service_date: 2026-01-09
+  criticality: 2
+  upstream: [SSB-PNL-2]
+  serves: [SSB-2003, SSB-2004, SSB-2005]
+  attributes: {amps: 20}
+- id: SSB-PNL-2-C03
+  type: circuit
+  name: Panel 2 circuit 3
+  install_year: 1988
+  last_service_date: 2026-02-11
+  criticality: 2
+  upstream: [SSB-PNL-2]
+  serves: [SSB-2006, SSB-2007, SSB-2008]
+  attributes: {amps: 20}
+- id: SSB-PNL-2-C04
+  type: circuit
+  name: Panel 2 circuit 4
+  install_year: 1988
+  last_service_date: 2026-06-01
+  criticality: 2
+  upstream: [SSB-PNL-2]
+  serves: [SSB-2011, SSB-2020, SSB-2021]
+  attributes: {amps: 20}
+- id: SSB-PNL-2-C05
+  type: circuit
+  name: Panel 2 circuit 5
+  install_year: 1988
+  last_service_date: 2025-12-03
+  criticality: 2
+  upstream: [SSB-PNL-2]
+  serves: [SSB-2030, SSB-2050, SSB-2060]
+  attributes: {amps: 20}
+- id: SSB-PNL-3-C01
+  type: circuit
+  name: Panel 3 circuit 1
+  install_year: 1988
+  last_service_date: 2026-08-11
+  criticality: 2
+  upstream: [SSB-PNL-3]
+  serves: [SSB-3000H, SSB-3001, SSB-3002]
+  attributes: {amps: 20}
+- id: SSB-PNL-3-C02
+  type: circuit
+  name: Panel 3 circuit 2
+  install_year: 1988
+  last_service_date: 2026-05-18
+  criticality: 2
+  upstream: [SSB-PNL-3]
+  serves: [SSB-3003, SSB-3004, SSB-3005]
+  attributes: {amps: 20}
+- id: SSB-PNL-3-C03
+  type: circuit
+  name: Panel 3 circuit 3
+  install_year: 1988
+  last_service_date: 2026-01-05
+  criticality: 2
+  upstream: [SSB-PNL-3]
+  serves: [SSB-3006, SSB-3007, SSB-3008]
+  attributes: {amps: 20}
+- id: SSB-PNL-3-C04
+  type: circuit
+  name: Panel 3 circuit 4
+  install_year: 1988
+  last_service_date: 2025-12-26
+  criticality: 2
+  upstream: [SSB-PNL-3]
+  serves: [SSB-3011, SSB-3020, SSB-3021]
+  attributes: {amps: 20}
+- id: SSB-PNL-3-C05
+  type: circuit
+  name: Panel 3 circuit 5
+  install_year: 1988
+  last_service_date: 2026-07-08
+  criticality: 2
+  upstream: [SSB-PNL-3]
+  serves: [SSB-3030, SSB-3050]
+  attributes: {amps: 20}
+- id: SSB-PNL-4-C01
+  type: circuit
+  name: Panel 4 circuit 1
+  install_year: 1988
+  last_service_date: 2026-09-16
+  criticality: 2
+  upstream: [SSB-PNL-4]
+  serves: [SSB-4000H, SSB-4001, SSB-4002]
+  attributes: {amps: 20}
+- id: SSB-PNL-4-C02
+  type: circuit
+  name: Panel 4 circuit 2
+  install_year: 1988
+  last_service_date: 2026-07-04
+  criticality: 2
+  upstream: [SSB-PNL-4]
+  serves: [SSB-4003, SSB-4004, SSB-4005]
+  attributes: {amps: 20}
+- id: SSB-PNL-4-C03
+  type: circuit
+  name: Panel 4 circuit 3
+  install_year: 1988
+  last_service_date: 2026-02-16
+  criticality: 2
+  upstream: [SSB-PNL-4]
+  serves: [SSB-4006, SSB-4010, SSB-4020]
+  attributes: {amps: 20}
+- id: SSB-PNL-4-C04
+  type: circuit
+  name: Panel 4 circuit 4
+  install_year: 1988
+  last_service_date: 2026-05-23
+  criticality: 2
+  upstream: [SSB-PNL-4]
+  serves: [SSB-4021, SSB-4030, SSB-4050]
+  attributes: {amps: 20}
+- id: SSB-ELB-1
+  type: elevator_bank
+  name: Elevator bank
+  install_year: 1995
+  last_service_date: 2025-12-08
+  criticality: 4
+  upstream: [SSB-PNL-M]
+  serves: [SSB-FB, SSB-F1, SSB-F2, SSB-F3, SSB-F4]
+- id: SSB-EL-1
+  type: elevator
+  name: Elevator 1
+  install_year: 1995
+  last_service_date: 2026-09-24
+  criticality: 4
+  part_of: SSB-ELB-1
+  attributes: {kind: passenger, capacity_lbs: 3500}
+- id: SSB-EL-2
+  type: elevator
+  name: Elevator 2
+  install_year: 1995
+  last_service_date: 2026-01-16
+  criticality: 4
+  part_of: SSB-ELB-1
+  attributes: {kind: passenger, capacity_lbs: 3500}
+- id: SSB-WH-1
+  type: water_heater
+  name: Water heater 1
+  install_year: 2012
+  last_service_date: 2026-04-18
+  criticality: 3
+  located_in: SSB-B001
+  upstream: [SSB-PNL-M]
+  attributes: {fuel: electric, gallons: 80}
+- id: SSB-PR-1
+  type: plumbing_riser
+  name: Plumbing riser 1 (east stack)
+  install_year: 1988
+  last_service_date: 2026-02-07
+  criticality: 3
+  upstream: [SSB-WH-1]
+  serves: [SSB-B004, SSB-1010, SSB-1011, SSB-2020, SSB-2021]
+- id: SSB-PR-2
+  type: plumbing_riser
+  name: Plumbing riser 2 (west stack)
+  install_year: 1988
+  last_service_date: 2025-12-21
+  criticality: 3
+  upstream: [SSB-WH-1]
+  serves: [SSB-2060, SSB-3020, SSB-3021, SSB-4020, SSB-4021]

@@ -1,0 +1,49 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+code: REC
+name: Student Center
+aliases: [the student center, the rec center, the SC]
+year_built: 2012
+floors:
+- label: '1'
+  level: 1
+  aliases: [first floor of REC]
+  rooms:
+  - {number: 1000H, type: lobby, capacity: 0, name: Main lobby, aliases: [student center lobby]}
+  - {number: '1001', type: dining, capacity: 300, name: Food court, aliases: [the food court]}
+  - {number: '1002', type: kitchen, capacity: 0, name: Kitchen A}
+  - {number: '1003', type: kitchen, capacity: 0, name: Kitchen B}
+  - {number: '1010', type: gym, capacity: 200, name: Main gym, aliases: [the gym]}
+  - {number: '1011', type: locker_room, capacity: 0, name: Men's locker room}
+  - {number: '1012', type: locker_room, capacity: 0, name: Women's locker room}
+  - {number: '1013', type: locker_room, capacity: 0, name: All-gender locker room}
+  - {number: '1020', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '1021', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '1022', type: restroom, capacity: 0, name: Restroom (all-gender)}
+  - {number: '1030', type: office, capacity: 4, name: Front desk, aliases: [rec front desk]}
+  - {number: '1040', type: storage, capacity: 0, name: Equipment storage}
+  - {number: '1050', type: mechanical, capacity: 0, name: Mechanical room}
+  - {number: '1051', type: electrical, capacity: 0, name: Main electrical room}
+  - {number: '1060', type: custodial, capacity: 0, name: Custodial closet}
+  - {number: '1070', type: gym, capacity: 80, name: Pool, aliases: [the pool, natatorium]}
+  - {number: '1080', type: lounge, capacity: 50, name: Game room}
+- label: '2'
+  level: 2
+  aliases: [second floor of REC]
+  rooms:
+  - {number: 2000H, type: hallway, capacity: 0, name: Second-floor hallway}
+  - {number: '2001', type: gym, capacity: 120, name: Fitness center, aliases: [the weight room, fitness center]}
+  - {number: '2002', type: gym, capacity: 40, name: Studio A}
+  - {number: '2003', type: gym, capacity: 40, name: Studio B}
+  - {number: '2010', type: conference, capacity: 16, name: Meeting room 2010}
+  - {number: '2011', type: conference, capacity: 16, name: Meeting room 2011}
+  - {number: '2012', type: conference, capacity: 16, name: Meeting room 2012}
+  - {number: '2013', type: conference, capacity: 16, name: Meeting room 2013}
+  - {number: '2020', type: lounge, capacity: 40, name: Student org lounge}
+  - {number: '2021', type: office, capacity: 4, name: Student org office 2021}
+  - {number: '2022', type: office, capacity: 4, name: Student org office 2022}
+  - {number: '2023', type: office, capacity: 4, name: Student org office 2023}
+  - {number: '2024', type: office, capacity: 4, name: Student org office 2024}
+  - {number: '2030', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '2031', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '2040', type: electrical, capacity: 0, name: Electrical closet}
+  - {number: '2050', type: storage, capacity: 0, name: Storage}

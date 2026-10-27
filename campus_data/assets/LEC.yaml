@@ -1,0 +1,210 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+building: LEC
+assets:
+- id: LEC-MSB
+  type: panel
+  name: Main switchboard
+  install_year: 2005
+  last_service_date: 2026-06-13
+  criticality: 5
+  located_in: LEC-1041
+  attributes: {role: main, volts: 480}
+- id: LEC-PNL-M
+  type: panel
+  name: Mechanical power panel
+  install_year: 2005
+  last_service_date: 2026-08-10
+  criticality: 4
+  located_in: LEC-1040
+  upstream: [LEC-MSB]
+  attributes: {role: mechanical, volts: 480}
+- id: LEC-PNL-1
+  type: panel
+  name: Floor 1 lighting and receptacle panel
+  install_year: 2005
+  last_service_date: 2026-01-25
+  criticality: 3
+  located_in: LEC-1041
+  upstream: [LEC-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: LEC-PNL-2
+  type: panel
+  name: Floor 2 lighting and receptacle panel
+  install_year: 2005
+  last_service_date: 2026-06-04
+  criticality: 3
+  located_in: LEC-2040
+  upstream: [LEC-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: LEC-AHU-1
+  type: air_handler
+  name: Air handler 1 (floors 1)
+  install_year: 2005
+  last_service_date: 2026-05-17
+  criticality: 4
+  located_in: LEC-1040
+  upstream: [SSB-CH-1, SSB-BLR-1, LEC-PNL-M]
+  attributes: {cfm: 16000, outside_air_pct: 30}
+- id: LEC-AHU-2
+  type: air_handler
+  name: Air handler 2 (floors 2)
+  install_year: 2005
+  last_service_date: 2026-08-19
+  criticality: 4
+  located_in: LEC-1040
+  upstream: [SSB-CH-1, SSB-BLR-1, LEC-PNL-M]
+  attributes: {cfm: 20000, outside_air_pct: 25}
+- id: LEC-Z1N1
+  type: hvac_zone
+  name: 'Zone 1N1: 1000H, 1001...'
+  install_year: 2005
+  last_service_date: 2026-01-28
+  criticality: 2
+  upstream: [LEC-AHU-1]
+  serves: [LEC-1000H, LEC-1001, LEC-1002, LEC-1003, LEC-1010, LEC-1011, LEC-1020, LEC-1030]
+- id: LEC-Z1N2
+  type: hvac_zone
+  name: 'Zone 1N2: 1040, 1041...'
+  install_year: 2005
+  last_service_date: 2026-03-07
+  criticality: 2
+  upstream: [LEC-AHU-1]
+  serves: [LEC-1040, LEC-1041, LEC-1050]
+- id: LEC-Z2N1
+  type: hvac_zone
+  name: 'Zone 2N1: 2000H, 2001...'
+  install_year: 2005
+  last_service_date: 2026-07-22
+  criticality: 2
+  upstream: [LEC-AHU-2]
+  serves: [LEC-2000H, LEC-2001, LEC-2002, LEC-2003, LEC-2004, LEC-2005, LEC-2006, LEC-2010]
+- id: LEC-Z2N2
+  type: hvac_zone
+  name: 'Zone 2N2: 2011, 2020...'
+  install_year: 2005
+  last_service_date: 2026-07-22
+  criticality: 2
+  upstream: [LEC-AHU-2]
+  serves: [LEC-2011, LEC-2020, LEC-2030, LEC-2040, LEC-2050]
+- id: LEC-PNL-1-C01
+  type: circuit
+  name: Panel 1 circuit 1
+  install_year: 2005
+  last_service_date: 2026-01-08
+  criticality: 2
+  upstream: [LEC-PNL-1]
+  serves: [LEC-1000H, LEC-1001, LEC-1002]
+  attributes: {amps: 20}
+- id: LEC-PNL-1-C02
+  type: circuit
+  name: Panel 1 circuit 2
+  install_year: 2005
+  last_service_date: 2026-07-11
+  criticality: 2
+  upstream: [LEC-PNL-1]
+  serves: [LEC-1003, LEC-1010, LEC-1011]
+  attributes: {amps: 20}
+- id: LEC-PNL-1-C03
+  type: circuit
+  name: Panel 1 circuit 3
+  install_year: 2005
+  last_service_date: 2026-03-12
+  criticality: 2
+  upstream: [LEC-PNL-1]
+  serves: [LEC-1020, LEC-1030, LEC-1040]
+  attributes: {amps: 20}
+- id: LEC-PNL-1-C04
+  type: circuit
+  name: Panel 1 circuit 4
+  install_year: 2005
+  last_service_date: 2026-04-13
+  criticality: 2
+  upstream: [LEC-PNL-1]
+  serves: [LEC-1041, LEC-1050]
+  attributes: {amps: 20}
+- id: LEC-PNL-2-C01
+  type: circuit
+  name: Panel 2 circuit 1
+  install_year: 2005
+  last_service_date: 2025-11-30
+  criticality: 2
+  upstream: [LEC-PNL-2]
+  serves: [LEC-2000H, LEC-2001, LEC-2002]
+  attributes: {amps: 20}
+- id: LEC-PNL-2-C02
+  type: circuit
+  name: Panel 2 circuit 2
+  install_year: 2005
+  last_service_date: 2026-09-18
+  criticality: 2
+  upstream: [LEC-PNL-2]
+  serves: [LEC-2003, LEC-2004, LEC-2005]
+  attributes: {amps: 20}
+- id: LEC-PNL-2-C03
+  type: circuit
+  name: Panel 2 circuit 3
+  install_year: 2005
+  last_service_date: 2026-05-24
+  criticality: 2
+  upstream: [LEC-PNL-2]
+  serves: [LEC-2006, LEC-2010, LEC-2011]
+  attributes: {amps: 20}
+- id: LEC-PNL-2-C04
+  type: circuit
+  name: Panel 2 circuit 4
+  install_year: 2005
+  last_service_date: 2026-08-25
+  criticality: 2
+  upstream: [LEC-PNL-2]
+  serves: [LEC-2020, LEC-2030, LEC-2040]
+  attributes: {amps: 20}
+- id: LEC-PNL-2-C05
+  type: circuit
+  name: Panel 2 circuit 5
+  install_year: 2005
+  last_service_date: 2026-03-05
+  criticality: 2
+  upstream: [LEC-PNL-2]
+  serves: [LEC-2050]
+  attributes: {amps: 20}
+- id: LEC-ELB-1
+  type: elevator_bank
+  name: Elevator bank
+  install_year: 2005
+  last_service_date: 2026-07-10
+  criticality: 4
+  upstream: [LEC-PNL-M]
+  serves: [LEC-F1, LEC-F2]
+- id: LEC-EL-1
+  type: elevator
+  name: Elevator 1
+  install_year: 2005
+  last_service_date: 2026-06-14
+  criticality: 4
+  part_of: LEC-ELB-1
+  attributes: {kind: passenger, capacity_lbs: 3500}
+- id: LEC-WH-1
+  type: water_heater
+  name: Water heater 1
+  install_year: 2017
+  last_service_date: 2026-06-13
+  criticality: 3
+  located_in: LEC-1040
+  upstream: [LEC-PNL-M]
+  attributes: {fuel: electric, gallons: 100}
+- id: LEC-PR-1
+  type: plumbing_riser
+  name: Plumbing riser 1 (east stack)
+  install_year: 2005
+  last_service_date: 2026-08-28
+  criticality: 3
+  upstream: [LEC-WH-1]
+  serves: [LEC-1010, LEC-1011, LEC-1050]
+- id: LEC-PR-2
+  type: plumbing_riser
+  name: Plumbing riser 2 (west stack)
+  install_year: 2005
+  last_service_date: 2026-02-14
+  criticality: 3
+  upstream: [LEC-WH-1]
+  serves: [LEC-2010, LEC-2011]

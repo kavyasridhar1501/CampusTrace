@@ -1,0 +1,106 @@
+{
+  "$defs": {
+    "CrewMember": {
+      "additionalProperties": false,
+      "properties": {
+        "home_building": {
+          "pattern": "^[A-Z]{2,5}$",
+          "title": "Home Building",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^tech-\\d{2}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "shift": {
+          "$ref": "#/$defs/Shift"
+        },
+        "trades": {
+          "items": {
+            "enum": [
+              "plumbing",
+              "electrical",
+              "hvac",
+              "structural",
+              "custodial",
+              "grounds"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Trades",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "trades",
+        "shift",
+        "home_building"
+      ],
+      "title": "CrewMember",
+      "type": "object"
+    },
+    "Shift": {
+      "additionalProperties": false,
+      "properties": {
+        "days": {
+          "items": {
+            "enum": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Days",
+          "type": "array"
+        },
+        "end": {
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+          "title": "End",
+          "type": "string"
+        },
+        "start": {
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "days",
+        "start",
+        "end"
+      ],
+      "title": "Shift",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "crews": {
+      "items": {
+        "$ref": "#/$defs/CrewMember"
+      },
+      "minItems": 1,
+      "title": "Crews",
+      "type": "array"
+    }
+  },
+  "required": [
+    "crews"
+  ],
+  "title": "CrewsFile",
+  "type": "object"
+}

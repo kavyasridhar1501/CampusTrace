@@ -1,0 +1,38 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+code: LEC
+name: Lecture Hall Center
+aliases: [the lecture halls, LHC, lecture hall center]
+year_built: 2005
+floors:
+- label: '1'
+  level: 1
+  aliases: [first floor of LEC]
+  rooms:
+  - {number: 1000H, type: lobby, capacity: 0, name: Lobby, aliases: [lecture hall lobby]}
+  - {number: '1001', type: lecture_hall, capacity: 400, name: Hall 1001, aliases: [the big lecture hall, Hall 1]}
+  - {number: '1002', type: lecture_hall, capacity: 250, name: Hall 1002, aliases: [Hall 2]}
+  - {number: '1003', type: lecture_hall, capacity: 250, name: Hall 1003, aliases: [Hall 3]}
+  - {number: '1010', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '1011', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '1020', type: storage, capacity: 0, name: AV storage}
+  - {number: '1030', type: office, capacity: 3, name: AV office, aliases: [AV help desk]}
+  - {number: '1040', type: mechanical, capacity: 0, name: Mechanical room}
+  - {number: '1041', type: electrical, capacity: 0, name: Main electrical room}
+  - {number: '1050', type: custodial, capacity: 0, name: Custodial closet}
+- label: '2'
+  level: 2
+  aliases: [second floor of LEC]
+  rooms:
+  - {number: 2000H, type: hallway, capacity: 0, name: Second-floor hallway}
+  - {number: '2001', type: classroom, capacity: 120}
+  - {number: '2002', type: classroom, capacity: 120}
+  - {number: '2003', type: classroom, capacity: 90}
+  - {number: '2004', type: classroom, capacity: 90}
+  - {number: '2005', type: classroom, capacity: 60}
+  - {number: '2006', type: classroom, capacity: 60}
+  - {number: '2010', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '2011', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '2020', type: seminar, capacity: 30, name: Seminar room 2020}
+  - {number: '2030', type: storage, capacity: 0, name: Storage}
+  - {number: '2040', type: electrical, capacity: 0, name: Electrical closet}
+  - {number: '2050', type: lounge, capacity: 40, name: Study lounge}

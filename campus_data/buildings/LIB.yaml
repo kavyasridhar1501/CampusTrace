@@ -1,0 +1,63 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+code: LIB
+name: Hillside Library
+aliases: [the library, Hillside, main library]
+year_built: 1965
+floors:
+- label: '1'
+  level: 1
+  aliases: [first floor of LIB]
+  rooms:
+  - {number: 1000H, type: lobby, capacity: 0, name: Library entrance, aliases: [library entrance, circulation desk]}
+  - {number: '1010', type: study, capacity: 120, name: Reading room, aliases: [the reading room]}
+  - {number: '1020', type: study, capacity: 6, name: Group study room 1020}
+  - {number: '1021', type: study, capacity: 6, name: Group study room 1021}
+  - {number: '1022', type: study, capacity: 6, name: Group study room 1022}
+  - {number: '1023', type: study, capacity: 6, name: Group study room 1023}
+  - {number: '1024', type: study, capacity: 6, name: Group study room 1024}
+  - {number: '1025', type: study, capacity: 6, name: Group study room 1025}
+  - {number: '1030', type: computer_lab, capacity: 60, name: Learning commons, aliases: [the commons, learning commons]}
+  - {number: '1040', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '1041', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '1050', type: office, capacity: 8, name: Library administration}
+  - {number: '1060', type: mechanical, capacity: 0, name: Mechanical room}
+  - {number: '1061', type: electrical, capacity: 0, name: Main electrical room}
+  - {number: '1070', type: custodial, capacity: 0, name: Custodial closet}
+  - {number: '1080', type: dining, capacity: 40, name: Library cafe, aliases: [the library cafe, the cafe]}
+  - {number: '1081', type: kitchen, capacity: 0, name: Cafe kitchen}
+- label: '2'
+  level: 2
+  aliases: [second floor of LIB]
+  rooms:
+  - {number: 2000H, type: hallway, capacity: 0, name: Second-floor hallway}
+  - {number: '2010', type: stacks, capacity: 30, name: 'East stacks, floor 2'}
+  - {number: '2011', type: stacks, capacity: 30, name: 'West stacks, floor 2'}
+  - {number: '2020', type: study, capacity: 6, name: Group study room 2020}
+  - {number: '2021', type: study, capacity: 6, name: Group study room 2021}
+  - {number: '2022', type: study, capacity: 6, name: Group study room 2022}
+  - {number: '2023', type: study, capacity: 6, name: Group study room 2023}
+  - {number: '2024', type: study, capacity: 6, name: Group study room 2024}
+  - {number: '2025', type: study, capacity: 6, name: Group study room 2025}
+  - {number: '2026', type: study, capacity: 6, name: Group study room 2026}
+  - {number: '2027', type: study, capacity: 6, name: Group study room 2027}
+  - {number: '2040', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '2041', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '2050', type: office, capacity: 6, name: Reference office}
+  - {number: '2060', type: electrical, capacity: 0, name: Electrical closet}
+- label: '3'
+  level: 3
+  aliases: [third floor of LIB]
+  rooms:
+  - {number: 3000H, type: hallway, capacity: 0, name: Third-floor hallway}
+  - {number: '3010', type: stacks, capacity: 30, name: 'Stacks, floor 3'}
+  - {number: '3011', type: stacks, capacity: 10, name: Special collections, aliases: [special collections, the archives]}
+  - {number: '3020', type: study, capacity: 4, name: Quiet study room 3020}
+  - {number: '3021', type: study, capacity: 4, name: Quiet study room 3021}
+  - {number: '3022', type: study, capacity: 4, name: Quiet study room 3022}
+  - {number: '3023', type: study, capacity: 4, name: Quiet study room 3023}
+  - {number: '3024', type: study, capacity: 4, name: Quiet study room 3024}
+  - {number: '3025', type: study, capacity: 4, name: Quiet study room 3025}
+  - {number: '3030', type: seminar, capacity: 20, name: Seminar room 3030}
+  - {number: '3040', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '3041', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '3060', type: electrical, capacity: 0, name: Electrical closet}

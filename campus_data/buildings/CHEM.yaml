@@ -1,0 +1,80 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+code: CHEM
+name: Chemistry and Biochemistry
+aliases: [Chem, the chemistry building, Chem building]
+year_built: 1972
+floors:
+- label: B
+  level: -1
+  aliases: [CHEM basement]
+  rooms:
+  - {number: B100H, type: hallway, capacity: 0, name: Basement corridor}
+  - {number: B101, type: mechanical, capacity: 0, name: Mechanical room}
+  - {number: B102, type: electrical, capacity: 0, name: Main electrical room}
+  - {number: B110, type: storage, capacity: 0, name: Chemical storage, aliases: [chem storage]}
+  - {number: B120, type: wet_lab, capacity: 6, name: NMR facility, aliases: [the NMR room]}
+  - {number: B130, type: wet_lab, capacity: 6, name: Mass spectrometry lab, aliases: [mass spec lab]}
+  - {number: B140, type: custodial, capacity: 0, name: Custodial closet}
+  - {number: B150, type: storage, capacity: 0, name: Receiving, aliases: [loading dock]}
+- label: '1'
+  level: 1
+  aliases: [first floor of CHEM]
+  rooms:
+  - {number: 1100H, type: lobby, capacity: 0, name: Main lobby, aliases: [Chem lobby]}
+  - {number: '1101', type: lecture_hall, capacity: 150, name: Lecture hall 1101, aliases: [the big chem lecture hall]}
+  - {number: '1102', type: classroom, capacity: 48}
+  - {number: '1103', type: classroom, capacity: 48}
+  - {number: '1110', type: wet_lab, capacity: 24, name: Teaching lab 1110}
+  - {number: '1111', type: wet_lab, capacity: 24, name: Teaching lab 1111}
+  - {number: '1112', type: wet_lab, capacity: 24, name: Teaching lab 1112}
+  - {number: '1113', type: wet_lab, capacity: 24, name: Teaching lab 1113}
+  - {number: '1114', type: wet_lab, capacity: 24, name: Teaching lab 1114}
+  - {number: '1120', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '1121', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '1130', type: office, capacity: 3, name: Stockroom office}
+  - {number: '1140', type: storage, capacity: 0, name: Stockroom, aliases: [the stockroom]}
+  - {number: '1150', type: electrical, capacity: 0, name: Electrical closet}
+- label: '2'
+  level: 2
+  aliases: [second floor of CHEM]
+  rooms:
+  - {number: 2100H, type: hallway, capacity: 0, name: Second-floor hallway}
+  - {number: '2101', type: wet_lab, capacity: 8, name: Research lab 2101}
+  - {number: '2102', type: wet_lab, capacity: 8, name: Research lab 2102}
+  - {number: '2103', type: wet_lab, capacity: 8, name: Research lab 2103}
+  - {number: '2104', type: wet_lab, capacity: 8, name: Research lab 2104}
+  - {number: '2105', type: wet_lab, capacity: 8, name: Research lab 2105}
+  - {number: '2106', type: wet_lab, capacity: 8, name: Research lab 2106}
+  - {number: '2107', type: wet_lab, capacity: 8, name: Research lab 2107}
+  - {number: '2108', type: wet_lab, capacity: 10, name: Organic synthesis lab, aliases: [the organic lab, orgo lab]}
+  - {number: '2110', type: office, capacity: 2, name: Office 2110}
+  - {number: '2111', type: office, capacity: 2, name: Office 2111}
+  - {number: '2112', type: office, capacity: 2, name: Office 2112}
+  - {number: '2113', type: office, capacity: 2, name: Office 2113}
+  - {number: '2114', type: office, capacity: 2, name: Office 2114}
+  - {number: '2120', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '2121', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '2130', type: conference, capacity: 12, name: Conference room 2130}
+  - {number: '2150', type: electrical, capacity: 0, name: Electrical closet}
+- label: '3'
+  level: 3
+  aliases: [third floor of CHEM]
+  rooms:
+  - {number: 3100H, type: hallway, capacity: 0, name: Third-floor hallway}
+  - {number: '3101', type: wet_lab, capacity: 8, name: Research lab 3101}
+  - {number: '3102', type: wet_lab, capacity: 8, name: Research lab 3102}
+  - {number: '3103', type: wet_lab, capacity: 8, name: Research lab 3103}
+  - {number: '3104', type: wet_lab, capacity: 8, name: Research lab 3104}
+  - {number: '3105', type: wet_lab, capacity: 8, name: Research lab 3105}
+  - {number: '3106', type: wet_lab, capacity: 8, name: Research lab 3106}
+  - {number: '3107', type: wet_lab, capacity: 8, name: Research lab 3107}
+  - {number: '3110', type: office, capacity: 2, name: Office 3110}
+  - {number: '3111', type: office, capacity: 2, name: Office 3111}
+  - {number: '3112', type: office, capacity: 2, name: Office 3112}
+  - {number: '3113', type: office, capacity: 2, name: Office 3113}
+  - {number: '3114', type: office, capacity: 2, name: Office 3114}
+  - {number: '3120', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '3121', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '3130', type: lounge, capacity: 20, name: Chem lounge}
+  - {number: '3131', type: kitchen, capacity: 0, name: Kitchenette}
+  - {number: '3150', type: electrical, capacity: 0, name: Electrical closet}

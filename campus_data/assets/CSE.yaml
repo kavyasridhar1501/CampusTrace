@@ -1,0 +1,532 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+building: CSE
+assets:
+- id: CSE-MSB
+  type: panel
+  name: Main switchboard
+  install_year: 1998
+  last_service_date: 2025-11-05
+  criticality: 5
+  located_in: CSE-B102
+  attributes: {role: main, volts: 480}
+- id: CSE-PNL-M
+  type: panel
+  name: Mechanical power panel
+  install_year: 1998
+  last_service_date: 2026-04-11
+  criticality: 4
+  located_in: CSE-B101
+  upstream: [CSE-MSB]
+  attributes: {role: mechanical, volts: 480}
+- id: CSE-PNL-B
+  type: panel
+  name: Floor B lighting and receptacle panel
+  install_year: 1998
+  last_service_date: 2026-06-20
+  criticality: 3
+  located_in: CSE-B102
+  upstream: [CSE-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: CSE-PNL-1
+  type: panel
+  name: Floor 1 lighting and receptacle panel
+  install_year: 1998
+  last_service_date: 2026-08-15
+  criticality: 3
+  located_in: CSE-1230
+  upstream: [CSE-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: CSE-PNL-2
+  type: panel
+  name: Floor 2 lighting and receptacle panel
+  install_year: 1998
+  last_service_date: 2026-03-06
+  criticality: 3
+  located_in: CSE-2230
+  upstream: [CSE-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: CSE-PNL-3
+  type: panel
+  name: Floor 3 lighting and receptacle panel
+  install_year: 1998
+  last_service_date: 2025-11-19
+  criticality: 3
+  located_in: CSE-3230
+  upstream: [CSE-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: CSE-PNL-4
+  type: panel
+  name: Floor 4 lighting and receptacle panel
+  install_year: 1998
+  last_service_date: 2026-07-25
+  criticality: 3
+  located_in: CSE-4230
+  upstream: [CSE-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: CSE-AHU-1
+  type: air_handler
+  name: Air handler 1 (floors B, 1)
+  install_year: 2015
+  last_service_date: 2026-07-04
+  criticality: 4
+  located_in: CSE-B101
+  upstream: [SSB-CH-1, SSB-BLR-1, CSE-PNL-M]
+  attributes: {cfm: 24000, outside_air_pct: 20}
+- id: CSE-AHU-2
+  type: air_handler
+  name: Air handler 2 (floors 2)
+  install_year: 1998
+  last_service_date: 2026-09-16
+  criticality: 4
+  located_in: CSE-B101
+  upstream: [SSB-CH-1, SSB-BLR-1, CSE-PNL-M]
+  attributes: {cfm: 12000, outside_air_pct: 25}
+- id: CSE-AHU-3
+  type: air_handler
+  name: Air handler 3 (floors 3, 4)
+  install_year: 1998
+  last_service_date: 2024-11-10
+  criticality: 4
+  located_in: CSE-B101
+  upstream: [SSB-CH-1, SSB-BLR-1, CSE-PNL-M]
+  attributes: {cfm: 12000, outside_air_pct: 30}
+- id: CSE-ZBN1
+  type: hvac_zone
+  name: 'Zone BN1: B100H, B101...'
+  install_year: 2015
+  last_service_date: 2026-04-09
+  criticality: 2
+  upstream: [CSE-AHU-1]
+  serves: [CSE-B100H, CSE-B101, CSE-B102, CSE-B103, CSE-B110, CSE-B140, CSE-B150, CSE-B160]
+- id: CSE-ZBN2
+  type: hvac_zone
+  name: 'Zone BN2: B170, B201...'
+  install_year: 2015
+  last_service_date: 2026-09-24
+  criticality: 2
+  upstream: [CSE-AHU-1]
+  serves: [CSE-B170, CSE-B201, CSE-B202]
+- id: CSE-Z1N1
+  type: hvac_zone
+  name: 'Zone 1N1: 1100H, 1101...'
+  install_year: 2015
+  last_service_date: 2025-11-23
+  criticality: 2
+  upstream: [CSE-AHU-1]
+  serves: [CSE-1100H, CSE-1101, CSE-1102, CSE-1103, CSE-1104, CSE-1105, CSE-1106, CSE-1110]
+- id: CSE-Z1S1
+  type: hvac_zone
+  name: 'Zone 1S1: 1200H, 1201...'
+  install_year: 2015
+  last_service_date: 2025-11-13
+  criticality: 2
+  upstream: [CSE-AHU-1]
+  serves: [CSE-1200H, CSE-1201, CSE-1202, CSE-1203, CSE-1210, CSE-1211, CSE-1220, CSE-1230]
+- id: CSE-Z2N1
+  type: hvac_zone
+  name: 'Zone 2N1: 2100H, 2101...'
+  install_year: 1998
+  last_service_date: 2026-09-13
+  criticality: 2
+  upstream: [CSE-AHU-2]
+  serves: [CSE-2100H, CSE-2101, CSE-2102, CSE-2103, CSE-2104, CSE-2105, CSE-2106, CSE-2107]
+- id: CSE-Z2N2
+  type: hvac_zone
+  name: 'Zone 2N2: 2110, 2111'
+  install_year: 1998
+  last_service_date: 2026-03-26
+  criticality: 2
+  upstream: [CSE-AHU-2]
+  serves: [CSE-2110, CSE-2111]
+- id: CSE-Z2S1
+  type: hvac_zone
+  name: 'Zone 2S1: 2200H, 2201...'
+  install_year: 1998
+  last_service_date: 2026-08-17
+  criticality: 2
+  upstream: [CSE-AHU-2]
+  serves: [CSE-2200H, CSE-2201, CSE-2202, CSE-2203, CSE-2204, CSE-2210, CSE-2230]
+- id: CSE-Z3N1
+  type: hvac_zone
+  name: 'Zone 3N1: 3100H, 3101...'
+  install_year: 1998
+  last_service_date: 2026-01-30
+  criticality: 2
+  upstream: [CSE-AHU-3]
+  serves: [CSE-3100H, CSE-3101, CSE-3102, CSE-3103, CSE-3104, CSE-3105, CSE-3106, CSE-3110]
+- id: CSE-Z3N2
+  type: hvac_zone
+  name: 'Zone 3N2: 3111, 3120'
+  install_year: 1998
+  last_service_date: 2026-09-14
+  criticality: 2
+  upstream: [CSE-AHU-3]
+  serves: [CSE-3111, CSE-3120]
+- id: CSE-Z3S1
+  type: hvac_zone
+  name: 'Zone 3S1: offices 3201-3206 and seminar room 3204'
+  install_year: 1998
+  last_service_date: 2025-12-13
+  criticality: 2
+  upstream: [CSE-AHU-3]
+  serves: [CSE-3201, CSE-3202, CSE-3203, CSE-3204, CSE-3205, CSE-3206]
+- id: CSE-Z3S2
+  type: hvac_zone
+  name: 'Zone 3S2: south hallway, conference room 3210, labs 3211-3212'
+  install_year: 1998
+  last_service_date: 2026-03-04
+  criticality: 2
+  upstream: [CSE-AHU-3]
+  serves: [CSE-3200H, CSE-3210, CSE-3211, CSE-3212, CSE-3230]
+- id: CSE-Z4N1
+  type: hvac_zone
+  name: 'Zone 4N1: 4100H, 4101...'
+  install_year: 1998
+  last_service_date: 2026-03-22
+  criticality: 2
+  upstream: [CSE-AHU-3]
+  serves: [CSE-4100H, CSE-4101, CSE-4102, CSE-4103, CSE-4104, CSE-4105, CSE-4106, CSE-4111]
+- id: CSE-Z4N2
+  type: hvac_zone
+  name: 'Zone 4N2: 4112, 4120'
+  install_year: 1998
+  last_service_date: 2026-06-11
+  criticality: 2
+  upstream: [CSE-AHU-3]
+  serves: [CSE-4112, CSE-4120]
+- id: CSE-Z4S1
+  type: hvac_zone
+  name: 'Zone 4S1: 4200H, 4201...'
+  install_year: 1998
+  last_service_date: 2026-04-17
+  criticality: 2
+  upstream: [CSE-AHU-3]
+  serves: [CSE-4200H, CSE-4201, CSE-4202, CSE-4210, CSE-4211, CSE-4230]
+- id: CSE-PNL-B-C01
+  type: circuit
+  name: Panel B circuit 1
+  install_year: 1998
+  last_service_date: 2026-03-04
+  criticality: 2
+  upstream: [CSE-PNL-B]
+  serves: [CSE-B100H, CSE-B101, CSE-B102]
+  attributes: {amps: 20}
+- id: CSE-PNL-B-C02
+  type: circuit
+  name: Panel B circuit 2
+  install_year: 1998
+  last_service_date: 2026-05-09
+  criticality: 2
+  upstream: [CSE-PNL-B]
+  serves: [CSE-B103, CSE-B110, CSE-B140]
+  attributes: {amps: 20}
+- id: CSE-PNL-B-C03
+  type: circuit
+  name: Panel B circuit 3
+  install_year: 1998
+  last_service_date: 2026-05-10
+  criticality: 2
+  upstream: [CSE-PNL-B]
+  serves: [CSE-B150, CSE-B160, CSE-B170]
+  attributes: {amps: 20}
+- id: CSE-PNL-B-C04
+  type: circuit
+  name: Panel B circuit 4
+  install_year: 1998
+  last_service_date: 2026-03-18
+  criticality: 2
+  upstream: [CSE-PNL-B]
+  serves: [CSE-B201, CSE-B202]
+  attributes: {amps: 20}
+- id: CSE-PNL-1-C01
+  type: circuit
+  name: Panel 1 circuit 1
+  install_year: 1998
+  last_service_date: 2026-08-30
+  criticality: 2
+  upstream: [CSE-PNL-1]
+  serves: [CSE-1100H, CSE-1101, CSE-1102]
+  attributes: {amps: 20}
+- id: CSE-PNL-1-C02
+  type: circuit
+  name: Panel 1 circuit 2
+  install_year: 1998
+  last_service_date: 2026-04-17
+  criticality: 2
+  upstream: [CSE-PNL-1]
+  serves: [CSE-1103, CSE-1104, CSE-1105]
+  attributes: {amps: 20}
+- id: CSE-PNL-1-C03
+  type: circuit
+  name: Panel 1 circuit 3
+  install_year: 1998
+  last_service_date: 2025-11-10
+  criticality: 2
+  upstream: [CSE-PNL-1]
+  serves: [CSE-1106, CSE-1110]
+  attributes: {amps: 20}
+- id: CSE-PNL-1-C04
+  type: circuit
+  name: Panel 1 circuit 4
+  install_year: 1998
+  last_service_date: 2026-04-16
+  criticality: 2
+  upstream: [CSE-PNL-1]
+  serves: [CSE-1200H, CSE-1201, CSE-1202]
+  attributes: {amps: 20}
+- id: CSE-PNL-1-C05
+  type: circuit
+  name: Panel 1 circuit 5
+  install_year: 1998
+  last_service_date: 2026-09-24
+  criticality: 2
+  upstream: [CSE-PNL-1]
+  serves: [CSE-1203, CSE-1210, CSE-1211]
+  attributes: {amps: 20}
+- id: CSE-PNL-1-C06
+  type: circuit
+  name: Panel 1 circuit 6
+  install_year: 1998
+  last_service_date: 2026-09-12
+  criticality: 2
+  upstream: [CSE-PNL-1]
+  serves: [CSE-1220, CSE-1230]
+  attributes: {amps: 20}
+- id: CSE-PNL-2-C01
+  type: circuit
+  name: Panel 2 circuit 1
+  install_year: 1998
+  last_service_date: 2026-06-14
+  criticality: 2
+  upstream: [CSE-PNL-2]
+  serves: [CSE-2100H, CSE-2101, CSE-2102]
+  attributes: {amps: 20}
+- id: CSE-PNL-2-C02
+  type: circuit
+  name: Panel 2 circuit 2
+  install_year: 1998
+  last_service_date: 2026-05-20
+  criticality: 2
+  upstream: [CSE-PNL-2]
+  serves: [CSE-2103, CSE-2104, CSE-2105]
+  attributes: {amps: 20}
+- id: CSE-PNL-2-C03
+  type: circuit
+  name: Panel 2 circuit 3
+  install_year: 1998
+  last_service_date: 2026-06-25
+  criticality: 2
+  upstream: [CSE-PNL-2]
+  serves: [CSE-2106, CSE-2107, CSE-2110]
+  attributes: {amps: 20}
+- id: CSE-PNL-2-C04
+  type: circuit
+  name: Panel 2 circuit 4
+  install_year: 1998
+  last_service_date: 2026-01-01
+  criticality: 2
+  upstream: [CSE-PNL-2]
+  serves: [CSE-2111]
+  attributes: {amps: 20}
+- id: CSE-PNL-2-C05
+  type: circuit
+  name: Panel 2 circuit 5
+  install_year: 1998
+  last_service_date: 2026-06-16
+  criticality: 2
+  upstream: [CSE-PNL-2]
+  serves: [CSE-2200H, CSE-2201, CSE-2202]
+  attributes: {amps: 20}
+- id: CSE-PNL-2-C06
+  type: circuit
+  name: Panel 2 circuit 6
+  install_year: 1998
+  last_service_date: 2026-01-17
+  criticality: 2
+  upstream: [CSE-PNL-2]
+  serves: [CSE-2203, CSE-2204, CSE-2210]
+  attributes: {amps: 20}
+- id: CSE-PNL-2-C07
+  type: circuit
+  name: Panel 2 circuit 7
+  install_year: 1998
+  last_service_date: 2026-02-25
+  criticality: 2
+  upstream: [CSE-PNL-2]
+  serves: [CSE-2230]
+  attributes: {amps: 20}
+- id: CSE-PNL-3-C01
+  type: circuit
+  name: Panel 3 circuit 1
+  install_year: 1998
+  last_service_date: 2026-06-01
+  criticality: 2
+  upstream: [CSE-PNL-3]
+  serves: [CSE-3100H, CSE-3101, CSE-3102]
+  attributes: {amps: 20}
+- id: CSE-PNL-3-C02
+  type: circuit
+  name: Panel 3 circuit 2
+  install_year: 1998
+  last_service_date: 2026-06-13
+  criticality: 2
+  upstream: [CSE-PNL-3]
+  serves: [CSE-3103, CSE-3104, CSE-3105]
+  attributes: {amps: 20}
+- id: CSE-PNL-3-C03
+  type: circuit
+  name: Panel 3 circuit 3
+  install_year: 1998
+  last_service_date: 2026-02-10
+  criticality: 2
+  upstream: [CSE-PNL-3]
+  serves: [CSE-3106, CSE-3110, CSE-3111]
+  attributes: {amps: 20}
+- id: CSE-PNL-3-C04
+  type: circuit
+  name: Panel 3 circuit 4
+  install_year: 1998
+  last_service_date: 2026-09-01
+  criticality: 2
+  upstream: [CSE-PNL-3]
+  serves: [CSE-3120]
+  attributes: {amps: 20}
+- id: CSE-PNL-3-C05
+  type: circuit
+  name: Panel 3 circuit 5
+  install_year: 1998
+  last_service_date: 2026-06-13
+  criticality: 2
+  upstream: [CSE-PNL-3]
+  serves: [CSE-3200H, CSE-3201, CSE-3202]
+  attributes: {amps: 20}
+- id: CSE-PNL-3-C06
+  type: circuit
+  name: Panel 3 circuit 6
+  install_year: 1998
+  last_service_date: 2025-11-26
+  criticality: 2
+  upstream: [CSE-PNL-3]
+  serves: [CSE-3203, CSE-3204, CSE-3205]
+  attributes: {amps: 20}
+- id: CSE-PNL-3-C07
+  type: circuit
+  name: Panel 3 circuit 7
+  install_year: 1998
+  last_service_date: 2026-09-09
+  criticality: 2
+  upstream: [CSE-PNL-3]
+  serves: [CSE-3206, CSE-3210, CSE-3211]
+  attributes: {amps: 20}
+- id: CSE-PNL-3-C08
+  type: circuit
+  name: Panel 3 circuit 8
+  install_year: 1998
+  last_service_date: 2026-09-27
+  criticality: 2
+  upstream: [CSE-PNL-3]
+  serves: [CSE-3212, CSE-3230]
+  attributes: {amps: 20}
+- id: CSE-PNL-4-C01
+  type: circuit
+  name: Panel 4 circuit 1
+  install_year: 1998
+  last_service_date: 2026-02-10
+  criticality: 2
+  upstream: [CSE-PNL-4]
+  serves: [CSE-4100H, CSE-4101, CSE-4102]
+  attributes: {amps: 20}
+- id: CSE-PNL-4-C02
+  type: circuit
+  name: Panel 4 circuit 2
+  install_year: 1998
+  last_service_date: 2026-04-05
+  criticality: 2
+  upstream: [CSE-PNL-4]
+  serves: [CSE-4103, CSE-4104, CSE-4105]
+  attributes: {amps: 20}
+- id: CSE-PNL-4-C03
+  type: circuit
+  name: Panel 4 circuit 3
+  install_year: 1998
+  last_service_date: 2026-07-09
+  criticality: 2
+  upstream: [CSE-PNL-4]
+  serves: [CSE-4106, CSE-4111, CSE-4112]
+  attributes: {amps: 20}
+- id: CSE-PNL-4-C04
+  type: circuit
+  name: Panel 4 circuit 4
+  install_year: 1998
+  last_service_date: 2025-12-07
+  criticality: 2
+  upstream: [CSE-PNL-4]
+  serves: [CSE-4120]
+  attributes: {amps: 20}
+- id: CSE-PNL-4-C05
+  type: circuit
+  name: Panel 4 circuit 5
+  install_year: 1998
+  last_service_date: 2026-01-03
+  criticality: 2
+  upstream: [CSE-PNL-4]
+  serves: [CSE-4200H, CSE-4201, CSE-4202]
+  attributes: {amps: 20}
+- id: CSE-PNL-4-C06
+  type: circuit
+  name: Panel 4 circuit 6
+  install_year: 1998
+  last_service_date: 2026-01-01
+  criticality: 2
+  upstream: [CSE-PNL-4]
+  serves: [CSE-4210, CSE-4211, CSE-4230]
+  attributes: {amps: 20}
+- id: CSE-ELB-1
+  type: elevator_bank
+  name: Elevator bank
+  install_year: 1998
+  last_service_date: 2026-08-03
+  criticality: 4
+  upstream: [CSE-PNL-M]
+  serves: [CSE-FB, CSE-F1, CSE-F2, CSE-F3, CSE-F4]
+- id: CSE-EL-1
+  type: elevator
+  name: Elevator 1
+  install_year: 1998
+  last_service_date: 2026-05-26
+  criticality: 4
+  part_of: CSE-ELB-1
+  attributes: {kind: passenger, capacity_lbs: 3500}
+- id: CSE-EL-2
+  type: elevator
+  name: Elevator 2
+  install_year: 1998
+  last_service_date: 2026-08-03
+  criticality: 4
+  part_of: CSE-ELB-1
+  attributes: {kind: passenger, capacity_lbs: 3500}
+- id: CSE-WH-1
+  type: water_heater
+  name: Water heater 1
+  install_year: 2010
+  last_service_date: 2026-04-11
+  criticality: 3
+  located_in: CSE-B101
+  upstream: [CSE-PNL-M]
+  attributes: {fuel: electric, gallons: 120}
+- id: CSE-PR-1
+  type: plumbing_riser
+  name: Plumbing riser 1 (east stack)
+  install_year: 1998
+  last_service_date: 2026-08-16
+  criticality: 3
+  upstream: [CSE-WH-1]
+  serves: [CSE-B103, CSE-B170, CSE-1105, CSE-1106, CSE-1220, CSE-2110]
+- id: CSE-PR-2
+  type: plumbing_riser
+  name: Plumbing riser 2 (west stack)
+  install_year: 1998
+  last_service_date: 2026-06-15
+  criticality: 3
+  upstream: [CSE-WH-1]
+  serves: [CSE-2111, CSE-3110, CSE-3111, CSE-4111, CSE-4112, CSE-4211]

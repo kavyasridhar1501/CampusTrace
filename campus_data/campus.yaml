@@ -1,0 +1,14 @@
+# Simulated campus. The buildings, rooms and equipment are invented for this project.
+# location is used only to pick a National Weather Service forecast point.
+name: Ridgeline University (simulated)
+timezone: America/Los_Angeles
+location: {latitude: 32.8801, longitude: -117.2340}
+buildings: [CSE, CHEM, LIB, LEC, SSB, REC]
+# Walking minutes between building entrances, used by the scheduler's travel times.
+walking_minutes:
+  CSE:  {CSE: 0, CHEM: 4, LIB: 6, LEC: 5, SSB: 8, REC: 10}
+  CHEM: {CSE: 4, CHEM: 0, LIB: 5, LEC: 6, SSB: 7, REC: 11}
+  LIB:  {CSE: 6, CHEM: 5, LIB: 0, LEC: 3, SSB: 4, REC: 7}
+  LEC:  {CSE: 5, CHEM: 6, LIB: 3, LEC: 0, SSB: 4, REC: 6}
+  SSB:  {CSE: 8, CHEM: 7, LIB: 4, LEC: 4, SSB: 0, REC: 5}
+  REC:  {CSE: 10, CHEM: 11, LIB: 7, LEC: 6, SSB: 5, REC: 0}

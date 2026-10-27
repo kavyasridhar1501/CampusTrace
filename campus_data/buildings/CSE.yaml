@@ -1,0 +1,107 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+code: CSE
+name: Computer Science and Engineering
+aliases: [CSE, the CSE building, computer science building]
+year_built: 1998
+floors:
+- label: B
+  level: -1
+  aliases: [CSE basement]
+  rooms:
+  - {number: B100H, type: hallway, capacity: 0, name: Basement corridor, aliases: [CSE basement hallway]}
+  - {number: B101, type: mechanical, capacity: 0, name: Mechanical room}
+  - {number: B102, type: electrical, capacity: 0, name: Main electrical room}
+  - {number: B103, type: custodial, capacity: 0, name: Custodial closet}
+  - {number: B110, type: server_room, capacity: 0, name: Machine room, aliases: [the server room, CSE machine room]}
+  - {number: B140, type: computer_lab, capacity: 30, name: Embedded Systems Lab, aliases: [the CSE basement lab, the basement lab, embedded lab]}
+  - {number: B150, type: dry_lab, capacity: 20, name: Robotics Lab, aliases: [robotics lab]}
+  - {number: B160, type: storage, capacity: 0, name: Storage}
+  - {number: B170, type: restroom, capacity: 0, name: Restroom}
+  - {number: B201, type: computer_lab, capacity: 40, name: Hardware Teaching Lab, aliases: [hardware lab]}
+  - {number: B202, type: dry_lab, capacity: 25, name: Makerspace, aliases: [the makerspace]}
+- label: '1'
+  level: 1
+  aliases: [first floor of CSE]
+  rooms:
+  - {number: 1100H, type: lobby, capacity: 0, name: Main lobby, aliases: [CSE lobby, the lobby]}
+  - {number: '1101', type: classroom, capacity: 60}
+  - {number: '1102', type: classroom, capacity: 60}
+  - {number: '1103', type: classroom, capacity: 40}
+  - {number: '1104', type: classroom, capacity: 40}
+  - {number: '1105', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '1106', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '1110', type: lounge, capacity: 30, name: Student lounge, aliases: [CSE lounge]}
+  - {number: 1200H, type: hallway, capacity: 0, name: First-floor south hallway}
+  - {number: '1201', type: computer_lab, capacity: 50, name: Instructional lab 1201}
+  - {number: '1202', type: computer_lab, capacity: 80, name: Instructional lab 1202, aliases: [the fishbowl]}
+  - {number: '1203', type: computer_lab, capacity: 50, name: Instructional lab 1203}
+  - {number: '1210', type: conference, capacity: 12, name: Conference room 1210}
+  - {number: '1211', type: office, capacity: 4, name: Advising office, aliases: [CSE advising]}
+  - {number: '1220', type: custodial, capacity: 0, name: Custodial closet}
+  - {number: '1230', type: electrical, capacity: 0, name: Electrical closet}
+- label: '2'
+  level: 2
+  aliases: [second floor of CSE]
+  rooms:
+  - {number: 2100H, type: hallway, capacity: 0, name: Second-floor north hallway}
+  - {number: '2101', type: office, capacity: 2, name: Office 2101}
+  - {number: '2102', type: office, capacity: 2, name: Office 2102}
+  - {number: '2103', type: office, capacity: 2, name: Office 2103}
+  - {number: '2104', type: office, capacity: 2, name: Office 2104}
+  - {number: '2105', type: office, capacity: 2, name: Office 2105}
+  - {number: '2106', type: office, capacity: 2, name: Office 2106}
+  - {number: '2107', type: conference, capacity: 10, name: Conference room 2107}
+  - {number: '2110', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '2111', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: 2200H, type: hallway, capacity: 0, name: Second-floor south hallway}
+  - {number: '2201', type: dry_lab, capacity: 12, name: Systems lab}
+  - {number: '2202', type: dry_lab, capacity: 12, name: Networking lab}
+  - {number: '2203', type: dry_lab, capacity: 12, name: Security lab}
+  - {number: '2204', type: dry_lab, capacity: 12, name: Vision lab}
+  - {number: '2210', type: computer_lab, capacity: 30, name: Graduate computing lab}
+  - {number: '2230', type: electrical, capacity: 0, name: Electrical closet}
+- label: '3'
+  level: 3
+  aliases: [third floor of CSE]
+  rooms:
+  - {number: 3100H, type: hallway, capacity: 0, name: Third-floor north hallway, aliases: [third-floor north hallway, 3rd floor north hall]}
+  - {number: '3101', type: office, capacity: 2, name: Office 3101}
+  - {number: '3102', type: office, capacity: 2, name: Office 3102}
+  - {number: '3103', type: office, capacity: 2, name: Office 3103}
+  - {number: '3104', type: office, capacity: 2, name: Office 3104}
+  - {number: '3105', type: office, capacity: 2, name: Office 3105}
+  - {number: '3106', type: office, capacity: 2, name: Office 3106}
+  - {number: '3110', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '3111', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '3120', type: conference, capacity: 14, name: Conference room 3120}
+  - {number: 3200H, type: hallway, capacity: 0, name: Third-floor south hallway, aliases: [third-floor south hallway, 3rd floor south hall]}
+  - {number: '3201', type: office, capacity: 2, name: Office 3201}
+  - {number: '3202', type: office, capacity: 2, name: Office 3202}
+  - {number: '3203', type: office, capacity: 2, name: Office 3203}
+  - {number: '3204', type: seminar, capacity: 24, name: Seminar room 3204, aliases: [the seminar room on 3]}
+  - {number: '3205', type: office, capacity: 2, name: Office 3205}
+  - {number: '3206', type: office, capacity: 2, name: Office 3206}
+  - {number: '3210', type: conference, capacity: 16, name: Conference room 3210}
+  - {number: '3211', type: dry_lab, capacity: 10, name: AI lab}
+  - {number: '3212', type: dry_lab, capacity: 10, name: HCI lab}
+  - {number: '3230', type: electrical, capacity: 0, name: Electrical closet}
+- label: '4'
+  level: 4
+  aliases: [fourth floor of CSE]
+  rooms:
+  - {number: 4100H, type: hallway, capacity: 0, name: Fourth-floor north hallway}
+  - {number: '4101', type: office, capacity: 2, name: Office 4101}
+  - {number: '4102', type: office, capacity: 2, name: Office 4102}
+  - {number: '4103', type: office, capacity: 2, name: Office 4103}
+  - {number: '4104', type: office, capacity: 2, name: Office 4104}
+  - {number: '4105', type: office, capacity: 2, name: Office 4105}
+  - {number: '4106', type: office, capacity: 2, name: Office 4106}
+  - {number: '4111', type: restroom, capacity: 0, name: Restroom (men)}
+  - {number: '4112', type: restroom, capacity: 0, name: Restroom (women)}
+  - {number: '4120', type: conference, capacity: 10, name: Conference room 4120}
+  - {number: 4200H, type: hallway, capacity: 0, name: Fourth-floor south hallway}
+  - {number: '4201', type: dry_lab, capacity: 10, name: Architecture lab}
+  - {number: '4202', type: dry_lab, capacity: 10, name: Theory group room}
+  - {number: '4210', type: lounge, capacity: 25, name: Graduate lounge, aliases: [grad lounge]}
+  - {number: '4211', type: kitchen, capacity: 0, name: Kitchenette}
+  - {number: '4230', type: electrical, capacity: 0, name: Electrical closet}

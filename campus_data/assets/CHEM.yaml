@@ -1,0 +1,402 @@
+# Simulated campus data (not a real building). See docs/PLAN.md, Data.
+building: CHEM
+assets:
+- id: CHEM-MSB
+  type: panel
+  name: Main switchboard
+  install_year: 1972
+  last_service_date: 2026-02-10
+  criticality: 5
+  located_in: CHEM-B102
+  attributes: {role: main, volts: 480}
+- id: CHEM-PNL-M
+  type: panel
+  name: Mechanical power panel
+  install_year: 1972
+  last_service_date: 2026-06-27
+  criticality: 4
+  located_in: CHEM-B101
+  upstream: [CHEM-MSB]
+  attributes: {role: mechanical, volts: 480}
+- id: CHEM-PNL-B
+  type: panel
+  name: Floor B lighting and receptacle panel
+  install_year: 1972
+  last_service_date: 2026-08-30
+  criticality: 3
+  located_in: CHEM-B102
+  upstream: [CHEM-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: CHEM-PNL-1
+  type: panel
+  name: Floor 1 lighting and receptacle panel
+  install_year: 1972
+  last_service_date: 2026-03-26
+  criticality: 3
+  located_in: CHEM-1150
+  upstream: [CHEM-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: CHEM-PNL-2
+  type: panel
+  name: Floor 2 lighting and receptacle panel
+  install_year: 1972
+  last_service_date: 2025-11-16
+  criticality: 3
+  located_in: CHEM-2150
+  upstream: [CHEM-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: CHEM-PNL-3
+  type: panel
+  name: Floor 3 lighting and receptacle panel
+  install_year: 1972
+  last_service_date: 2025-11-10
+  criticality: 3
+  located_in: CHEM-3150
+  upstream: [CHEM-MSB]
+  attributes: {role: distribution, volts: 208}
+- id: CHEM-CH-1
+  type: plant
+  name: Lab chiller
+  install_year: 1994
+  last_service_date: 2026-01-31
+  criticality: 5
+  located_in: CHEM-B101
+  upstream: [CHEM-PNL-M]
+  attributes: {kind: chiller, tons: 300}
+- id: CHEM-BLR-1
+  type: plant
+  name: Steam boiler
+  install_year: 1972
+  last_service_date: 2024-06-19
+  criticality: 5
+  located_in: CHEM-B101
+  upstream: [CHEM-PNL-M]
+  attributes: {kind: boiler, mbh: 3000}
+- id: CHEM-AHU-1
+  type: air_handler
+  name: Air handler 1 (floors B, 1)
+  install_year: 1972
+  last_service_date: 2026-03-09
+  criticality: 5
+  located_in: CHEM-B101
+  upstream: [CHEM-CH-1, CHEM-BLR-1, CHEM-PNL-M]
+  attributes: {cfm: 12000, outside_air_pct: 100}
+- id: CHEM-AHU-2
+  type: air_handler
+  name: Air handler 2 (floors 2)
+  install_year: 2008
+  last_service_date: 2026-03-19
+  criticality: 5
+  located_in: CHEM-B101
+  upstream: [CHEM-CH-1, CHEM-BLR-1, CHEM-PNL-M]
+  attributes: {cfm: 20000, outside_air_pct: 100}
+- id: CHEM-AHU-3
+  type: air_handler
+  name: Air handler 3 (floors 3)
+  install_year: 1994
+  last_service_date: 2025-12-06
+  criticality: 5
+  located_in: CHEM-B101
+  upstream: [CHEM-CH-1, CHEM-BLR-1, CHEM-PNL-M]
+  attributes: {cfm: 24000, outside_air_pct: 100}
+- id: CHEM-ZBN1
+  type: hvac_zone
+  name: 'Zone BN1: B100H, B101...'
+  install_year: 1972
+  last_service_date: 2026-03-02
+  criticality: 2
+  upstream: [CHEM-AHU-1]
+  serves: [CHEM-B100H, CHEM-B101, CHEM-B102, CHEM-B110, CHEM-B120, CHEM-B130, CHEM-B140, CHEM-B150]
+- id: CHEM-Z1N1
+  type: hvac_zone
+  name: 'Zone 1N1: 1100H, 1101...'
+  install_year: 1972
+  last_service_date: 2026-03-06
+  criticality: 2
+  upstream: [CHEM-AHU-1]
+  serves: [CHEM-1100H, CHEM-1101, CHEM-1102, CHEM-1103, CHEM-1110, CHEM-1111, CHEM-1112, CHEM-1113]
+- id: CHEM-Z1N2
+  type: hvac_zone
+  name: 'Zone 1N2: 1114, 1120...'
+  install_year: 1972
+  last_service_date: 2026-05-03
+  criticality: 2
+  upstream: [CHEM-AHU-1]
+  serves: [CHEM-1114, CHEM-1120, CHEM-1121, CHEM-1130, CHEM-1140, CHEM-1150]
+- id: CHEM-Z2N1
+  type: hvac_zone
+  name: 'Zone 2N1: 2100H, 2101...'
+  install_year: 2008
+  last_service_date: 2026-05-29
+  criticality: 2
+  upstream: [CHEM-AHU-2]
+  serves: [CHEM-2100H, CHEM-2101, CHEM-2102, CHEM-2103, CHEM-2104, CHEM-2105, CHEM-2106, CHEM-2107]
+- id: CHEM-Z2N2
+  type: hvac_zone
+  name: 'Zone 2N2: 2108, 2110...'
+  install_year: 2008
+  last_service_date: 2026-06-19
+  criticality: 2
+  upstream: [CHEM-AHU-2]
+  serves: [CHEM-2108, CHEM-2110, CHEM-2111, CHEM-2112, CHEM-2113, CHEM-2114, CHEM-2120, CHEM-2121]
+- id: CHEM-Z2N3
+  type: hvac_zone
+  name: 'Zone 2N3: 2130, 2150'
+  install_year: 2008
+  last_service_date: 2026-07-05
+  criticality: 2
+  upstream: [CHEM-AHU-2]
+  serves: [CHEM-2130, CHEM-2150]
+- id: CHEM-Z3N1
+  type: hvac_zone
+  name: 'Zone 3N1: 3100H, 3101...'
+  install_year: 1994
+  last_service_date: 2026-09-09
+  criticality: 2
+  upstream: [CHEM-AHU-3]
+  serves: [CHEM-3100H, CHEM-3101, CHEM-3102, CHEM-3103, CHEM-3104, CHEM-3105, CHEM-3106, CHEM-3107]
+- id: CHEM-Z3N2
+  type: hvac_zone
+  name: 'Zone 3N2: 3110, 3111...'
+  install_year: 1994
+  last_service_date: 2025-12-01
+  criticality: 2
+  upstream: [CHEM-AHU-3]
+  serves: [CHEM-3110, CHEM-3111, CHEM-3112, CHEM-3113, CHEM-3114, CHEM-3120, CHEM-3121, CHEM-3130]
+- id: CHEM-Z3N3
+  type: hvac_zone
+  name: 'Zone 3N3: 3131, 3150'
+  install_year: 1994
+  last_service_date: 2025-11-26
+  criticality: 2
+  upstream: [CHEM-AHU-3]
+  serves: [CHEM-3131, CHEM-3150]
+- id: CHEM-PNL-B-C01
+  type: circuit
+  name: Panel B circuit 1
+  install_year: 1972
+  last_service_date: 2026-08-08
+  criticality: 2
+  upstream: [CHEM-PNL-B]
+  serves: [CHEM-B100H, CHEM-B101, CHEM-B102]
+  attributes: {amps: 20}
+- id: CHEM-PNL-B-C02
+  type: circuit
+  name: Panel B circuit 2
+  install_year: 1972
+  last_service_date: 2025-12-29
+  criticality: 2
+  upstream: [CHEM-PNL-B]
+  serves: [CHEM-B110, CHEM-B120, CHEM-B130]
+  attributes: {amps: 20}
+- id: CHEM-PNL-B-C03
+  type: circuit
+  name: Panel B circuit 3
+  install_year: 1972
+  last_service_date: 2026-08-28
+  criticality: 2
+  upstream: [CHEM-PNL-B]
+  serves: [CHEM-B140, CHEM-B150]
+  attributes: {amps: 20}
+- id: CHEM-PNL-1-C01
+  type: circuit
+  name: Panel 1 circuit 1
+  install_year: 1972
+  last_service_date: 2026-09-17
+  criticality: 2
+  upstream: [CHEM-PNL-1]
+  serves: [CHEM-1100H, CHEM-1101, CHEM-1102]
+  attributes: {amps: 20}
+- id: CHEM-PNL-1-C02
+  type: circuit
+  name: Panel 1 circuit 2
+  install_year: 1972
+  last_service_date: 2026-01-26
+  criticality: 2
+  upstream: [CHEM-PNL-1]
+  serves: [CHEM-1103, CHEM-1110, CHEM-1111]
+  attributes: {amps: 20}
+- id: CHEM-PNL-1-C03
+  type: circuit
+  name: Panel 1 circuit 3
+  install_year: 1972
+  last_service_date: 2026-02-22
+  criticality: 2
+  upstream: [CHEM-PNL-1]
+  serves: [CHEM-1112, CHEM-1113, CHEM-1114]
+  attributes: {amps: 20}
+- id: CHEM-PNL-1-C04
+  type: circuit
+  name: Panel 1 circuit 4
+  install_year: 1972
+  last_service_date: 2026-07-04
+  criticality: 2
+  upstream: [CHEM-PNL-1]
+  serves: [CHEM-1120, CHEM-1121, CHEM-1130]
+  attributes: {amps: 20}
+- id: CHEM-PNL-1-C05
+  type: circuit
+  name: Panel 1 circuit 5
+  install_year: 1972
+  last_service_date: 2026-03-22
+  criticality: 2
+  upstream: [CHEM-PNL-1]
+  serves: [CHEM-1140, CHEM-1150]
+  attributes: {amps: 20}
+- id: CHEM-PNL-2-C01
+  type: circuit
+  name: Panel 2 circuit 1
+  install_year: 1972
+  last_service_date: 2026-08-27
+  criticality: 2
+  upstream: [CHEM-PNL-2]
+  serves: [CHEM-2100H, CHEM-2101, CHEM-2102]
+  attributes: {amps: 20}
+- id: CHEM-PNL-2-C02
+  type: circuit
+  name: Panel 2 circuit 2
+  install_year: 1972
+  last_service_date: 2026-04-17
+  criticality: 2
+  upstream: [CHEM-PNL-2]
+  serves: [CHEM-2103, CHEM-2104, CHEM-2105]
+  attributes: {amps: 20}
+- id: CHEM-PNL-2-C03
+  type: circuit
+  name: Panel 2 circuit 3
+  install_year: 1972
+  last_service_date: 2025-12-25
+  criticality: 2
+  upstream: [CHEM-PNL-2]
+  serves: [CHEM-2106, CHEM-2107, CHEM-2108]
+  attributes: {amps: 20}
+- id: CHEM-PNL-2-C04
+  type: circuit
+  name: Panel 2 circuit 4
+  install_year: 1972
+  last_service_date: 2025-11-03
+  criticality: 2
+  upstream: [CHEM-PNL-2]
+  serves: [CHEM-2110, CHEM-2111, CHEM-2112]
+  attributes: {amps: 20}
+- id: CHEM-PNL-2-C05
+  type: circuit
+  name: Panel 2 circuit 5
+  install_year: 1972
+  last_service_date: 2026-06-06
+  criticality: 2
+  upstream: [CHEM-PNL-2]
+  serves: [CHEM-2113, CHEM-2114, CHEM-2120]
+  attributes: {amps: 20}
+- id: CHEM-PNL-2-C06
+  type: circuit
+  name: Panel 2 circuit 6
+  install_year: 1972
+  last_service_date: 2026-09-05
+  criticality: 2
+  upstream: [CHEM-PNL-2]
+  serves: [CHEM-2121, CHEM-2130, CHEM-2150]
+  attributes: {amps: 20}
+- id: CHEM-PNL-3-C01
+  type: circuit
+  name: Panel 3 circuit 1
+  install_year: 1972
+  last_service_date: 2026-03-03
+  criticality: 2
+  upstream: [CHEM-PNL-3]
+  serves: [CHEM-3100H, CHEM-3101, CHEM-3102]
+  attributes: {amps: 20}
+- id: CHEM-PNL-3-C02
+  type: circuit
+  name: Panel 3 circuit 2
+  install_year: 1972
+  last_service_date: 2026-03-08
+  criticality: 2
+  upstream: [CHEM-PNL-3]
+  serves: [CHEM-3103, CHEM-3104, CHEM-3105]
+  attributes: {amps: 20}
+- id: CHEM-PNL-3-C03
+  type: circuit
+  name: Panel 3 circuit 3
+  install_year: 1972
+  last_service_date: 2026-02-06
+  criticality: 2
+  upstream: [CHEM-PNL-3]
+  serves: [CHEM-3106, CHEM-3107, CHEM-3110]
+  attributes: {amps: 20}
+- id: CHEM-PNL-3-C04
+  type: circuit
+  name: Panel 3 circuit 4
+  install_year: 1972
+  last_service_date: 2025-11-26
+  criticality: 2
+  upstream: [CHEM-PNL-3]
+  serves: [CHEM-3111, CHEM-3112, CHEM-3113]
+  attributes: {amps: 20}
+- id: CHEM-PNL-3-C05
+  type: circuit
+  name: Panel 3 circuit 5
+  install_year: 1972
+  last_service_date: 2026-04-12
+  criticality: 2
+  upstream: [CHEM-PNL-3]
+  serves: [CHEM-3114, CHEM-3120, CHEM-3121]
+  attributes: {amps: 20}
+- id: CHEM-PNL-3-C06
+  type: circuit
+  name: Panel 3 circuit 6
+  install_year: 1972
+  last_service_date: 2026-08-16
+  criticality: 2
+  upstream: [CHEM-PNL-3]
+  serves: [CHEM-3130, CHEM-3131, CHEM-3150]
+  attributes: {amps: 20}
+- id: CHEM-ELB-1
+  type: elevator_bank
+  name: Elevator bank
+  install_year: 1995
+  last_service_date: 2025-11-25
+  criticality: 4
+  upstream: [CHEM-PNL-M]
+  serves: [CHEM-FB, CHEM-F1, CHEM-F2, CHEM-F3]
+- id: CHEM-EL-1
+  type: elevator
+  name: Elevator 1
+  install_year: 1995
+  last_service_date: 2024-11-03
+  criticality: 4
+  part_of: CHEM-ELB-1
+  attributes: {kind: passenger, capacity_lbs: 3500}
+- id: CHEM-EL-2
+  type: elevator
+  name: Elevator 2 (freight)
+  install_year: 1995
+  last_service_date: 2024-06-10
+  criticality: 4
+  part_of: CHEM-ELB-1
+  attributes: {kind: freight, capacity_lbs: 5000}
+- id: CHEM-WH-1
+  type: water_heater
+  name: Water heater 1
+  install_year: 2005
+  last_service_date: 2026-08-23
+  criticality: 3
+  located_in: CHEM-B101
+  upstream: [CHEM-BLR-1]
+  attributes: {fuel: steam, gallons: 80}
+- id: CHEM-PR-1
+  type: plumbing_riser
+  name: Plumbing riser 1 (east stack)
+  install_year: 1972
+  last_service_date: 2026-07-05
+  criticality: 3
+  upstream: [CHEM-WH-1]
+  serves: [CHEM-B120, CHEM-B130, CHEM-B140, CHEM-1110, CHEM-1111, CHEM-1112, CHEM-1113, CHEM-1114, CHEM-1120, CHEM-1121, CHEM-2101, CHEM-2102, CHEM-2103, CHEM-2104, CHEM-2105]
+- id: CHEM-PR-2
+  type: plumbing_riser
+  name: Plumbing riser 2 (west stack)
+  install_year: 1972
+  last_service_date: 2026-07-11
+  criticality: 3
+  upstream: [CHEM-WH-1]
+  serves: [CHEM-2106, CHEM-2107, CHEM-2108, CHEM-2120, CHEM-2121, CHEM-3101, CHEM-3102, CHEM-3103, CHEM-3104, CHEM-3105, CHEM-3106, CHEM-3107, CHEM-3120, CHEM-3121, CHEM-3131]

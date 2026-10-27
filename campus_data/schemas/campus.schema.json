@@ -1,0 +1,73 @@
+{
+  "$defs": {
+    "Location": {
+      "additionalProperties": false,
+      "properties": {
+        "latitude": {
+          "maximum": 90,
+          "minimum": -90,
+          "title": "Latitude",
+          "type": "number"
+        },
+        "longitude": {
+          "maximum": 180,
+          "minimum": -180,
+          "title": "Longitude",
+          "type": "number"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "title": "Location",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "buildings": {
+      "items": {
+        "pattern": "^[A-Z]{2,5}$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Buildings",
+      "type": "array"
+    },
+    "location": {
+      "$ref": "#/$defs/Location"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "timezone": {
+      "title": "Timezone",
+      "type": "string"
+    },
+    "walking_minutes": {
+      "patternProperties": {
+        "^[A-Z]{2,5}$": {
+          "patternProperties": {
+            "^[A-Z]{2,5}$": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "title": "Walking Minutes",
+      "type": "object"
+    }
+  },
+  "required": [
+    "name",
+    "timezone",
+    "location",
+    "buildings",
+    "walking_minutes"
+  ],
+  "title": "CampusFile",
+  "type": "object"
+}

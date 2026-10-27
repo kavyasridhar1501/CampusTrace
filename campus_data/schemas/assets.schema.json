@@ -1,0 +1,137 @@
+{
+  "$defs": {
+    "AssetSpec": {
+      "additionalProperties": false,
+      "description": "One piece of equipment. Edges come from three fields:\n\nupstream  served_by edges from this asset to each listed asset (zone -> air handler)\nserves    served_by edges from each listed room or floor to this asset (room -> zone)\npart_of   part_of edge from this asset to its group (elevator -> elevator bank)",
+      "properties": {
+        "attributes": {
+          "additionalProperties": true,
+          "title": "Attributes",
+          "type": "object"
+        },
+        "criticality": {
+          "maximum": 5,
+          "minimum": 1,
+          "title": "Criticality",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Z]{2,5}-[A-Z0-9][A-Z0-9-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "install_year": {
+          "maximum": 2030,
+          "minimum": 1900,
+          "title": "Install Year",
+          "type": "integer"
+        },
+        "last_service_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Service Date"
+        },
+        "located_in": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z]{2,5}-[A-Z0-9][A-Z0-9-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Located In"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "part_of": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z]{2,5}-[A-Z0-9][A-Z0-9-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Part Of"
+        },
+        "serves": {
+          "items": {
+            "pattern": "^[A-Z]{2,5}-[A-Z0-9][A-Z0-9-]*$",
+            "type": "string"
+          },
+          "title": "Serves",
+          "type": "array"
+        },
+        "type": {
+          "enum": [
+            "hvac_zone",
+            "air_handler",
+            "plant",
+            "panel",
+            "circuit",
+            "elevator_bank",
+            "elevator",
+            "water_heater",
+            "plumbing_riser"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "upstream": {
+          "items": {
+            "pattern": "^[A-Z]{2,5}-[A-Z0-9][A-Z0-9-]*$",
+            "type": "string"
+          },
+          "title": "Upstream",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "name",
+        "install_year",
+        "criticality"
+      ],
+      "title": "AssetSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "assets": {
+      "items": {
+        "$ref": "#/$defs/AssetSpec"
+      },
+      "minItems": 1,
+      "title": "Assets",
+      "type": "array"
+    },
+    "building": {
+      "pattern": "^[A-Z]{2,5}$",
+      "title": "Building",
+      "type": "string"
+    }
+  },
+  "required": [
+    "building",
+    "assets"
+  ],
+  "title": "AssetsFile",
+  "type": "object"
+}
